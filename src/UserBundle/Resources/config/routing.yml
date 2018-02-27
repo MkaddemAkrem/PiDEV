@@ -1,0 +1,10 @@
+user_homepage:
+    path:     /
+    defaults: { _controller: UserBundle:Default:index }
+
+
+medecin_ajout:
+    path:     /medecin
+    defaults: { _controller: UserBundle:Medecin:new }
+
+

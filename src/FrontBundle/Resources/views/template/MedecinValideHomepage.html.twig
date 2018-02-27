@@ -1,0 +1,146 @@
+{% extends ('baseaccueil.html.twig') %}
+
+
+{%  block body %}
+
+
+
+
+    <div class="banner clearfix" xmlns="http://www.w3.org/1999/html"></div>
+    <div class=" page-top clearfix">
+        <!--page main heading-->
+        <div class="container">
+            <h1 class="entry-title">Médecin</h1>
+            <nav class="bread-crumb">
+                <ul class="breadcrumb clearfix">
+                    <li><a href="{{ path('user_homepage') }}">Accueil</a><span class="divider"></span></li>
+                    <li class="active">Dr.{{ medecinsvalides.nom }} {{ medecinsvalides.prenom }}</li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <div class="doctors-posts clearfix">
+        <article class="doctors-single clearfix">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 col-sm-5 ">
+                        <div class="clearfix">
+                            <!--doctor image-->
+                            <figure>
+
+                                <a class="swipebox" href="images/temp-images/doctor-2.jpg" title="Dr.Addison Alexander">
+
+                                    <img src="{{ asset('images/doc.png') }}" alt="Dr.Addison Alexander">
+                                </a>
+                            </figure>
+                            <!--doctor name-->
+
+                            <h5>Dr.{{ medecinsvalides.nom }} {{ medecinsvalides.prenom }}</h5>
+
+                            <div class="doctor-departments">{{ medecinsvalides.email }}</div>
+                            <div class="doc-schedule clearfix">
+                                <p><strong>Spécialité</strong><span>{{ medecinsvalides.specialite }}</span></p><p><strong>Education</strong><span>MBBS, Cardiology</span></p><p><strong>Work Days</strong><span>Monday, Tuesday, Wednesday</span></p>                                    </div>
+                            <div class="social-icon clearfix">
+                                <ul class="doc-social-nav">
+                                    <li class="twitter-icon"><a target="_blank" href="#"><i class="fa fa-twitter"></i></a></li>
+                                    <li class="facebook-icon"><a target="_blank" href="#"><i class="fa fa-facebook"></i></a></li>
+                                    <li class="linkedin-icon"><a target="_blank" href="#"><i class="fa fa-linkedin"></i></a></li>
+                                    <li class="skype-icon"><a target="_blank" href="#"><i class="fa fa-skype"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-8 col-sm-7 ">
+                        <div class="side-content clearfix">
+                            <div class="side-content clearfix">
+                                <!--doctor detail-->
+                                <header class="top-area clearfix entry-header">
+                                    <h1 class="entry-title">Dr.{{ medecinsvalides.nom }} {{ medecinsvalides.prenom }}</h1> <button type="button" class="btn btn-primary btn-lg " data-toggle="modal" data-target="#edit" style="display: inline">Prendre RDV <span class="glyphicon glyphicon-calendar"></span></button>
+                                    {{ facebookButton() }} </br>
+                                    {{ googleplusButton() }} </br>
+                                    {{ twitterButton() }}
+                                </header>
+
+                                <div class="entry-content">
+                                    <h4>Royal Prince Alfred Hospital – Sydney</h4>
+                                    <h5>June 2009 to July 2010</h5>
+                                    <p>{{ medecinsvalides.description }}</p>
+                                    {#<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco quat. Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>#}
+                                    <h4>Royal Melbourne Hospital -Melbourne</h4>
+                                    <h5>Aug 2010 to July 2011</h5>
+                                    <p>{{ medecinsvalides.description }}</p>
+                                    {#<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco quat. Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>#}
+                                    <h4>St Vincents Hospital – Sydney</h4>
+                                    <h5>Aug 2011 to Present</h5>
+                                    <p>{{ medecinsvalides.description }}</p>
+                                    {#<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco quat. Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>#}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+
+    </div>
+
+    <div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                    <h4 class="modal-title custom_align" id="Heading">Prise de RDV</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        {#{{ form_start(edit_form) }}#}
+                        <span class="glyphicon glyphicon-calendar" style="display: inline">
+                        <input class="form-control " type="text" id="datepicker" style="width: 50%"  required>
+                        </span>
+                        {#{{form_widget(edit_form.nom ,{ 'attr': {'class': "form-control",'placeholder': "Nom"}})}}#}
+                    </div>
+                    <div class="form-group">
+                        <span class="glyphicon glyphicon-time" style="display: inline">
+                        <input class="form-control " type="text"  id="time" style="width: 50%" required>
+                        </span>
+                        {#{{form_widget(edit_form.prenom ,{ 'attr': {'class': "form-control",'placeholder': "Prenom"}})}}#}
+
+                    </div>
+                    <div class="modal-footer ">
+
+                        <input value="Valider RDV" type="submit" onclick="saveData()" class="btn btn-success " style="width: 90%" >  
+
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+    </div>
+
+    <script src="{{ asset('js/jquery-2.2.3.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script>
+        function saveData() {
+
+            var date= $('#datepicker').val();
+            var time= $('#time').val();
+            var m={{ id }};
+            var u={{ app.user.id }};
+            $.ajax({
+                type: "POST",
+                url: "{{ path('medecin_rdv') }}",
+                data: {'date': date,'time': time,'u': u,'m': m},
+                success: function (data ) {
+                    console.log(data);
+
+                }
+
+            });
+
+        }
+
+    </script>
+{% endblock %}

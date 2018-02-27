@@ -1,0 +1,40 @@
+front_homepage:
+    path:     /
+    defaults: { _controller: FrontBundle:Default:index }
+
+medecin:
+    path:     /doctors
+    defaults: { _controller: FrontBundle:Default:Medecin }
+
+medecin_profile:
+    path:     /doctors/profile/show
+    defaults: { _controller: FrontBundle:Default:MedecinHome }
+
+medecin_rdv:
+    path:     /doctors/profile/rdv
+    defaults: { _controller: UserBundle:RDV:RDV}
+
+medecin_rechehrche:
+    path:     /doctors/recherche
+    defaults: { _controller: FrontBundle:Default:rechercher }
+
+profile_user:
+    path:     /user/profile
+    defaults: { _controller: FrontBundle:Default:profile }
+
+profile_medecin:
+    path:     /doctors/profile
+    defaults: { _controller: FrontBundle:Default:profilemed }
+
+update_rdv:
+    path:     /rdv/update
+    defaults: { _controller: FrontBundle:Default:updaterdv }
+
+
+medecin_rechercher_spec:
+    path:     /doctors/recherche/spec
+    defaults: { _controller: FrontBundle:Default:rechercherSpec }
+
+delete_rdv_user:
+    path:     /rdv/delete
+    defaults: { _controller: FrontBundle:Default:DeleteRdv }

@@ -1,0 +1,38 @@
+
+{% for i in all %}
+<div id="isotope-container" class="clearfix">
+
+    <div class="isotope-item cardiac-clinic primary-health-care col-md-4 col-sm-6 ">
+        <article class="common-doctor clearfix hentry">
+            <!--doctor image-->
+
+            <figure>
+                <a href="{{ path('medecin_profile',{'id': i.id })}}" title="Dr. {{ i.nom }} {{ i.prenom }}">
+                    <img src="{{ asset('images/doc.png') }}" alt="doctor-2" />
+                </a>
+            </figure>
+            <div class="text-content">
+                <!--doctor name-->
+                <h5 class="entry-title"><a href="#">Dr.{{ i.nom }} {{ i.prenom }}</a></h5>
+                <div class="doctor-departments">
+                    <a href="#">{{ i.specialite }}</a>
+                </div>
+                <div class="for-border"></div>
+                <!--doctor detail-->
+                <p class="entry-summary">
+                    {{ i.description }}
+                </p>
+                <div class="social-icon clearfix">
+                    <!--social icons-->
+                    <ul class="doc-social-nav">
+                        <li class ="twitter-icon" ><a target="_blank" href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li class ="facebook-icon" ><a target="_blank" href="#"><i class="fa fa-facebook"></i></a></li>
+                        <li class ="linkedin-icon" ><a target="_blank" href="#"><i class="fa fa-linkedin"></i></a></li>
+                        <li class ="skype-icon" ><a target="_blank" href="skype:testusername?add"><i class="fa fa-skype"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </article>
+    </div>
+</div>
+{% endfor %}

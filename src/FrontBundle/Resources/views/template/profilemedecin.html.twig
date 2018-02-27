@@ -1,0 +1,142 @@
+{% extends ('baseaccueil.html.twig') %}
+
+{%  block body %}
+
+    <div class="doctors-posts clearfix">
+        <article class="doctors-single clearfix">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 col-sm-5 ">
+                        <div class="clearfix">
+                            <!--doctor image-->
+                            <div id="image" style="width:200px;margin: 0 auto">
+
+                                    <img src="{{ asset('images/doc.png') }}" alt="Dr.Addison Alexander" style="width: 100%;">
+                                </a>
+                            </div>
+                            <!--doctor name-->
+                            <h5></h5>
+
+                            <div class="doctor-departments"></div>
+                            <div class="doc-schedule clearfix">
+
+                                <p><strong>Nom & Prénom</strong><span> {{ medecinsvalides.nom }} {{ medecinsvalides.prenom }} </span></p>
+                                <p><strong>Email</strong><span>{{ medecinsvalides.email }}</span></p>
+                                <p><strong>Adresse</strong><span>{{ medecinsvalides.adresse }}</span></p>
+                                <p><strong>Spécialité</strong><span>{{ medecinsvalides.specialite }}</span></p>
+                                <p><strong>Description</strong><span>{{ medecinsvalides.description }}</span></p>
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-md-8 col-sm-7 ">
+                        <div class="side-content clearfix">
+                            <!--doctor detail-->
+
+                            <header class="top-area clearfix entry-header">
+
+                                <button class="btn btn-success ">
+                                    <span class="glyphicon glyphicon-pencil"></span> Modifier vos infos
+                                </button>
+                            </header>
+
+                            <div class="entry-content">
+                                <h5>Vos Rendez-vous :</h5>
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th>Patient</th>
+                                        <th>Date</th>
+                                        <th>Heure</th>
+                                        <th>Valider</th>
+                                        <th>modifier RDV</th>
+                                        <th>Annuler RDV</th>
+                                    </tr>
+                                    </thead>
+                                    {% for j in rdvmedecins %}
+                                        {% if j.medecin.id == app.user.id %}
+                                            <tbody>
+                                            <tr>
+                                                <th>{{ j.utilisateur.nom }} {{ j.utilisateur.prenom }}</th>
+                                                <th scope="row">{{ j.date }}</th>
+                                                <td>{{ j.heure }}</td>
+                                                <td></td>
+                                                <td><button data-toggle="modal" data-target="#edit" value="id"><span class="glyphicon glyphicon-pencil"></span>{{ j.id }} </button></td>
+                                                <td><button><a href="{{ path('delete_rdv_user',{'id': j.id }) }}"> <span class="glyphicon glyphicon-remove"></span></a> </button></td>
+
+                                            </tr>
+                                            <script src="{{ asset('js/jquery-2.2.3.min.js') }}"></script>
+                                            <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+                                            <script>
+                                                function update() {
+
+                                                    var date= $('#datepicker').val();
+                                                    var time= $('#time').val();
+                                                    var idrdv={{ j.id }};
+                                                    $.ajax({
+                                                        type: "POST",
+                                                        url: "{{ path('update_rdv') }}",
+                                                        data: {'idrdv':idrdv,'date': date,'time': time},
+                                                        success: function (data ) {
+                                                            console.log(data);
+
+                                                        }
+
+                                                    });
+
+                                                }
+
+                                            </script>
+                                            </tbody>
+
+                                        {% endif %}
+                                    {% endfor %}
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                    <h4 class="modal-title custom_align" id="Heading">Modification de RDV</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        {#{{ form_start(edit_form) }}#}
+                        <span class="glyphicon glyphicon-calendar" style="display: inline">
+                        <input class="form-control " type="text" id="datepicker" style="width: 50%" >
+                        </span>
+                        {#{{form_widget(edit_form.nom ,{ 'attr': {'class': "form-control",'placeholder': "Nom"}})}}#}
+                    </div>
+                    <div class="form-group">
+                        <span class="glyphicon glyphicon-time" style="display: inline">
+                        <input class="form-control " type="text"  id="time" style="width: 50%">
+                        </span>
+                        {#{{form_widget(edit_form.prenom ,{ 'attr': {'class': "form-control",'placeholder': "Prenom"}})}}#}
+
+                    </div>
+                    <div class="modal-footer ">
+
+                        <input value="Valider RDV" type="submit" onclick="saveData()" class="btn btn-success " style="width: 70%" >  
+                        <span class="glyphicon glyphicon-send"> </span>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+    </div>
+
+
+
+{% endblock %}
+

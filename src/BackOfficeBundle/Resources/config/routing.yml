@@ -1,0 +1,55 @@
+back_office_homepage:
+    path:     /admin
+    defaults: { _controller: BackOfficeBundle:Default:index }
+
+affiche_medecin:
+    path:     /admin/affiche
+    defaults: { _controller: UserBundle:Medecin:afficheMedecin }
+
+valider_medecin:
+    path:     /admin/valid
+    defaults: { _controller: UserBundle:Medecin:valider }
+
+
+layout:
+    path:     /layout
+    defaults: { _controller: BackOfficeBundle:Default:layout }
+
+
+#gestion_medecin:
+#    path:     /admin/users
+#    defaults: { _controller: UserBundle:Medecin:index}
+
+edit_medecin:
+    path:     /admin/users/edit
+    defaults: { _controller: UserBundle:Medecin:edit}
+
+ajaxEdit:
+    path:     /admin/users/ajax/edit
+    defaults: { _controller: UserBundle:Medecin:ajaxEdit}
+ajaxDelete:
+    path:     /admin/users/ajax/delete
+    defaults: { _controller: UserBundle:Medecin:ajaxDelete}
+
+delete_medecin:
+    path:     /admin/users/delete
+    defaults: { _controller: UserBundle:Medecin:delete}
+
+bloquer_medecin:
+    path:     /admin/users/block
+    defaults: { _controller: UserBundle:Medecin:bloquer}
+chart:
+    path:     /chart
+    defaults: { _controller: BackOfficeBundle:Default:chart }
+table:
+    path:     /table
+    defaults: { _controller: BackOfficeBundle:Default:table }
+form:
+    path:     /form
+    defaults: { _controller: BackOfficeBundle:Default:form }
+panel:
+    path:     /panel
+    defaults: { _controller: BackOfficeBundle:Default:panel }
+icon:
+    path:     /icon
+    defaults: { _controller: BackOfficeBundle:Default:icon }

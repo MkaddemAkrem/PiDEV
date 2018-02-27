@@ -1,0 +1,206 @@
+{% extends ('baseaccueil.html.twig') %}
+
+{%  block body %}
+
+<!--banner-->
+<div class="banner clearfix"></div>
+<div class="page-top clearfix">
+    <!--page main heading-->
+    <div class="container">
+            <h1 class="entry-title">La liste des docteurs</h1>
+        <nav class="bread-crumb">
+            <ul class="breadcrumb clearfix">
+                <li><a href="{{ path('user_homepage') }}">Accueil</a><span class="divider"></span></li>
+                <li class="active">Medecins</li>
+            </ul>
+        </nav>
+    </div>
+</div>
+
+
+    <div class="container">
+        <div class="row" id="search">
+            <form id="search-form" action="" method="POST" enctype="multipart/form-data">
+                <div class="form-group col-xs-9">
+                    <input class="form-control " type="text" placeholder="Recherche par nom .." id="recherche" style="margin-top: 10px;background-color: #e1edf7;border-radius: 8px;width: 60%;border-color: #1b3548" />
+
+                </div>
+
+            </form>
+        </div>
+        <div class="searchaction" style="display: none;background-color: #e1edf7;width: 500px;height: 90px;margin-bottom: 10px;">
+            <ul class="list-group" id="contact-list">
+
+            </ul>
+        </div>
+
+        <div class="row" id="filter">
+            <form>
+                <div class="form-group col-sm-3 col-xs-6">
+                    <select id="spec" data-filter="make" class="filter-make filter form-control" style="background-color: #e1edf7" >
+                        <option disabled selected>Spécialité</option>
+                        <option  value="Cardiologue">Cardiologue</option>
+                        <option  value="Dentiste">Dentiste</option>
+                        <option  value="Dermatologue">Dermatologue</option>
+                        <option  value="Generaliste">Generaliste</option>
+                        <option  value="Gynecologue">Gynecologue</option>
+                        <option  value="Ophtalmologiste">Ophtalmologiste</option>
+                        <option  value="ORL)'">ORL'</option>
+                        <option  value="Pediatre">Pediatre</option>
+                        <option  value="Psychiatre">Psychiatre</option>
+                    </select>
+                </div>
+
+            </form>
+        </div>
+
+        <div class="blog-page-single clearfix">
+            <article class=" hentry  clearfix">
+                <div class="full-width-contents">
+                    <div class="entry-content text-center">
+                        <h2>La liste des médecins</h2>
+                        {#<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>#}
+                    </div>
+                </div>
+            </article>
+        </div>
+
+
+    <div  class="container isotope-wrapper text-center">
+        <div  class="row" id="res">
+            <div id="isotope-container" class="clearfix">
+            {% for i in medecins %}
+
+
+                <div class="isotope-item cardiac-clinic primary-health-care col-md-4 col-sm-6 ">
+                    <article class="common-doctor clearfix hentry">
+                        <!--doctor image-->
+
+                        <figure>
+                            <a href="{{ path('medecin_profile',{'id': i.id })}}" title="Dr. {{ i.nom }} {{ i.prenom }}">
+                                <img src="{{ asset('images/doc.png') }}" alt="doctor-2" />
+                            </a>
+                        </figure>
+                        <div class="text-content">
+                            <!--doctor name-->
+                            <h5 class="entry-title"><a href="#">Dr.{{ i.nom }} {{ i.prenom }}</a></h5>
+                            <div class="doctor-departments">
+                                <a href="#">{{ i.specialite }}</a>
+                            </div>
+                            <div class="for-border"></div>
+                            <!--doctor detail-->
+                            <p class="entry-summary">
+                              {{ i.description }}
+                            </p>
+                            <div class="social-icon clearfix">
+                                <!--social icons-->
+                                <ul class="doc-social-nav">
+                                    <li class ="twitter-icon" ><a target="_blank" href="#"><i class="fa fa-twitter"></i></a></li>
+                                    <li class ="facebook-icon" ><a target="_blank" href="#"><i class="fa fa-facebook"></i></a></li>
+                                    <li class ="linkedin-icon" ><a target="_blank" href="#"><i class="fa fa-linkedin"></i></a></li>
+                                    <li class ="skype-icon" ><a target="_blank" href="skype:testusername?add"><i class="fa fa-skype"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </article>
+                    </div>
+
+                    {% endfor %}
+            </div>
+                    <div class="navigation">
+                        {{ knp_pagination_render(medecins) }}
+                        <div>
+
+
+                {#{% for j in medecinsvalides %}#}
+
+                {#<div id="isotope-container" class="clearfix">#}
+
+
+                    {#<div class="isotope-item cardiac-clinic primary-health-care col-md-4 col-sm-6 ">#}
+                        {#<article class="common-doctor clearfix hentry">#}
+                            {#<!--doctor image-->#}
+
+                            {#<figure>#}
+
+                                {#<a href="{{ path('medecin_profile',{'id': j.id })}}" title="Dr. {{ j.nom }} {{ j.prenom }}">#}
+                                    {#<img src="{{ asset('images/doc.png') }}" alt="doctor-2" /><span class="glyphicon  glyphicon-check"  ></span>#}
+                                {#</a>#}
+                            {#</figure>#}
+                            {#<div class="text-content">#}
+                                {#<!--doctor name-->#}
+                                {#<h5 class="entry-title"><a href="#">Dr.{{ j.nom }} {{ j.prenom }}</a></h5>#}
+                                {#<div class="doctor-departments">#}
+                                    {#<a href="#">{{ j.specialite }}</a>#}
+                                {#</div>#}
+                                {#<div class="for-border"></div>#}
+                                {#<!--doctor detail-->#}
+                                {#<p class="entry-summary">#}
+                                    {#{{ j.description }}#}
+                                {#</p>#}
+                                {#<div class="social-icon clearfix">#}
+                                    {#<!--social icons-->#}
+                                    {#<ul class="doc-social-nav">#}
+                                        {#<li class ="twitter-icon" ><a target="_blank" href="#"><i class="fa fa-twitter"></i></a></li>#}
+                                        {#<li class ="facebook-icon" ><a target="_blank" href="#"><i class="fa fa-facebook"></i></a></li>#}
+                                        {#<li class ="linkedin-icon" ><a target="_blank" href="#"><i class="fa fa-linkedin"></i></a></li>#}
+                                        {#<li class ="skype-icon" ><a target="_blank" href="skype:testusername?add"><i class="fa fa-skype"></i></a></li>#}
+                                    {#</ul>#}
+                                {#</div>#}
+                            {#</div>#}
+                        {#</article>#}
+                    {#</div>#}
+                {#</div>#}
+
+
+                {#{% endfor %}#}
+
+
+
+        </div>
+    </div>
+
+<script src="{{ asset('js/jquery-2.2.3.min.js') }}"></script>
+<script>
+
+
+        $('#recherche').keyup(function(){
+            var input= $("#recherche").val();
+            $.ajax({
+                type: "POST",
+                url: "{{ path('medecin_rechehrche') }}",
+                data: {'titre': input},
+                success: function (data) {
+
+                    console.log(data);
+                    // lé lé mochkla fel view lo5ra te3 search m
+                    $("#res").html(data);
+
+
+                }
+            });
+
+        });
+
+        $('#spec').change(function(){
+            var input= $("#spec").val();
+            $.ajax({
+                type: "POST",
+                url: "{{ path('medecin_rechercher_spec') }}",
+                data: {'spec': input},
+                success: function (data) {
+
+                    console.log(data);
+                    // lé lé mochkla fel view lo5ra te3 search m
+                    $("#res").html(data);
+
+
+                }
+            });
+
+        });
+
+
+
+</script>
+{% endblock %}

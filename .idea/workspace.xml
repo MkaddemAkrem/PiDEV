@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="31c1b1df-4490-4586-ad53-d174e4b322bd" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/baseadmin.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/baseadmin.html.twig" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/BackOfficeBundle/Resources/views/template/chart.html.twig" afterPath="$PROJECT_DIR$/src/BackOfficeBundle/Resources/views/template/chart.html.twig" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/FrontBundle/Controller/DefaultController.php" afterPath="$PROJECT_DIR$/src/FrontBundle/Controller/DefaultController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/UserBundle/Repository/MedecinRepository.php" afterPath="$PROJECT_DIR$/src/UserBundle/Repository/MedecinRepository.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/UserBundle/Repository/RDVRepository.php" afterPath="$PROJECT_DIR$/src/UserBundle/Repository/RDVRepository.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -19,9 +18,87 @@
       <file leaf-file-name="chart.html.twig" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/BackOfficeBundle/Resources/views/template/chart.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="12" lean-forward="false" selection-start-line="0" selection-start-column="12" selection-end-line="0" selection-end-column="12" />
-              <folding />
+            <state relative-caret-position="465">
+              <caret line="40" column="146" lean-forward="false" selection-start-line="40" selection-start-column="146" selection-end-line="40" selection-end-column="146" />
+              <folding>
+                <element signature="e#12#31#0#Twig" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DefaultController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/FrontBundle/Controller/DefaultController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="439">
+              <caret line="296" column="51" lean-forward="false" selection-start-line="296" selection-start-column="51" selection-end-line="296" selection-end-column="51" />
+              <folding>
+                <element signature="e#42#99#0#PHP" expanded="true" />
+                <element signature="e#884#900#1#PHP" expanded="true" />
+                <element signature="e#950#967#1#PHP" expanded="true" />
+                <element signature="e#1304#1321#1#PHP" expanded="true" />
+                <element signature="e#1369#1385#1#PHP" expanded="true" />
+                <element signature="e#1716#1736#1#PHP" expanded="true" />
+                <element signature="e#1796#1816#1#PHP" expanded="true" />
+                <element signature="e#2198#2247#0#PHP" expanded="true" />
+                <element signature="e#3968#3988#1#PHP" expanded="true" />
+                <element signature="e#4049#4066#1#PHP" expanded="true" />
+                <element signature="e#5077#5093#1#PHP" expanded="true" />
+                <element signature="e#5365#5381#1#PHP" expanded="true" />
+                <element signature="e#5902#5918#1#PHP" expanded="true" />
+                <element signature="e#6130#6146#1#PHP" expanded="true" />
+                <element signature="e#6202#6250#0#PHP" expanded="true" />
+                <element signature="e#6679#6695#1#PHP" expanded="true" />
+                <element signature="e#6907#6923#1#PHP" expanded="true" />
+                <element signature="e#6979#7027#0#PHP" expanded="true" />
+                <element signature="e#7460#7476#1#PHP" expanded="true" />
+                <element signature="e#7688#7704#1#PHP" expanded="true" />
+                <element signature="e#7760#7800#0#PHP" expanded="true" />
+                <element signature="e#8212#8228#1#PHP" expanded="true" />
+                <element signature="e#8276#8312#0#PHP" expanded="true" />
+                <element signature="e#8830#8850#1#PHP" expanded="true" />
+                <element signature="e#8921#8941#1#PHP" expanded="true" />
+                <element signature="e#9007#9027#1#PHP" expanded="true" />
+                <element signature="e#9218#9238#1#PHP" expanded="true" />
+                <element signature="e#9311#9331#1#PHP" expanded="true" />
+                <element signature="e#9488#9504#1#PHP" expanded="true" />
+                <element signature="e#9566#9582#1#PHP" expanded="true" />
+                <marker date="1519861432936" expanded="true" signature="759:850" ph="{...}" />
+                <marker date="1519861432936" expanded="true" signature="4450:4477" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MedecinRepository.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/UserBundle/Repository/MedecinRepository.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="487">
+              <caret line="102" column="5" lean-forward="false" selection-start-line="92" selection-start-column="3" selection-end-line="102" selection-end-column="5" />
+              <folding>
+                <element signature="e#1951#1968#0#PHP" expanded="true" />
+                <element signature="e#2227#2247#0#PHP" expanded="true" />
+                <element signature="e#2498#2521#0#PHP" expanded="true" />
+                <marker date="1519859486809" expanded="true" signature="350:406" ph="SELECT v FRO... UserBundle" />
+                <marker date="1519859486809" expanded="true" signature="618:675" ph="SELECT v FRO... UserBundle" />
+                <marker date="1519859486809" expanded="true" signature="1580:1647" ph="SELECT count... UserBundle" />
+                <marker date="1519859486809" expanded="true" signature="2721:2796" ph="SELECT count... UserBundle" />
+                <marker date="1519859486809" expanded="true" signature="2721:2800" ph="SELECT count... AnnonceBundle" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RDVRepository.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/UserBundle/Repository/RDVRepository.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="407">
+              <caret line="30" column="36" lean-forward="false" selection-start-line="30" selection-start-column="36" selection-end-line="30" selection-end-column="36" />
+              <folding>
+                <element signature="e#620#636#0#PHP" expanded="true" />
+                <marker date="1519861240721" expanded="true" signature="319:370" ph="SELECT m FRO... UserBundle" />
+                <marker date="1519861240721" expanded="true" signature="832:900" ph="SELECT count... UserBundle" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -107,7 +184,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/UserBundle/Resources/views/Medecin/formmedecin.html.twig" />
         <option value="$PROJECT_DIR$/src/FrontBundle/Resources/views/template/search.html.twig" />
         <option value="$PROJECT_DIR$/src/BackOfficeBundle/Resources/views/template/modalEdit.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/FOSUser/views/Registration/register_content.html.twig" />
@@ -155,9 +231,10 @@
         <option value="$PROJECT_DIR$/src/BackOfficeBundle/Resources/config/routing.yml" />
         <option value="$PROJECT_DIR$/app/config/parameters.yml" />
         <option value="$PROJECT_DIR$/src/UserBundle/Repository/MedecinRepository.php" />
+        <option value="$PROJECT_DIR$/app/Resources/views/baseadmin.html.twig" />
+        <option value="$PROJECT_DIR$/src/UserBundle/Repository/RDVRepository.php" />
         <option value="$PROJECT_DIR$/src/FrontBundle/Controller/DefaultController.php" />
         <option value="$PROJECT_DIR$/src/BackOfficeBundle/Resources/views/template/chart.html.twig" />
-        <option value="$PROJECT_DIR$/app/Resources/views/baseadmin.html.twig" />
       </list>
     </option>
   </component>
@@ -207,31 +284,14 @@
               <item name="projetdev" type="b2602c69:ProjectViewProjectNode" />
               <item name="projetdev" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="BackOfficeBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="UserBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="projetdev" type="b2602c69:ProjectViewProjectNode" />
               <item name="projetdev" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="BackOfficeBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Resources" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="projetdev" type="b2602c69:ProjectViewProjectNode" />
-              <item name="projetdev" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="BackOfficeBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Resources" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="projetdev" type="b2602c69:ProjectViewProjectNode" />
-              <item name="projetdev" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="BackOfficeBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Resources" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="template" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="UserBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Repository" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
           </expand>
           <select />
@@ -289,12 +349,12 @@
       <workItem from="1519651193777" duration="10836000" />
       <workItem from="1519677500033" duration="45992000" />
       <workItem from="1519770897897" duration="4556000" />
-      <workItem from="1519775494361" duration="46098000" />
+      <workItem from="1519775494361" duration="47267000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="411927000" />
+    <option name="totallyTimeSpent" value="413096000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -331,13 +391,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Command/CreateUserCommand.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="75" column="0" lean-forward="false" selection-start-line="75" selection-start-column="0" selection-end-line="75" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Model/UserManagerInterface.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="194">
@@ -749,8 +802,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/UserBundle/Repository/MedecinRepository.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="94" column="39" lean-forward="false" selection-start-line="94" selection-start-column="39" selection-end-line="94" selection-end-column="39" />
+        <state relative-caret-position="487">
+          <caret line="102" column="5" lean-forward="false" selection-start-line="92" selection-start-column="3" selection-end-line="102" selection-end-column="5" />
           <folding>
             <element signature="e#1951#1968#0#PHP" expanded="true" />
             <element signature="e#2227#2247#0#PHP" expanded="true" />
@@ -764,10 +817,22 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/UserBundle/Repository/RDVRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="407">
+          <caret line="30" column="36" lean-forward="false" selection-start-line="30" selection-start-column="36" selection-end-line="30" selection-end-column="36" />
+          <folding>
+            <element signature="e#620#636#0#PHP" expanded="true" />
+            <marker date="1519861240721" expanded="true" signature="319:370" ph="SELECT m FRO... UserBundle" />
+            <marker date="1519861240721" expanded="true" signature="832:900" ph="SELECT count... UserBundle" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/FrontBundle/Controller/DefaultController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="430">
-          <caret line="294" column="11" lean-forward="false" selection-start-line="294" selection-start-column="11" selection-end-line="294" selection-end-column="11" />
+        <state relative-caret-position="439">
+          <caret line="296" column="51" lean-forward="false" selection-start-line="296" selection-start-column="51" selection-end-line="296" selection-end-column="51" />
           <folding>
             <element signature="e#42#99#0#PHP" expanded="true" />
             <element signature="e#884#900#1#PHP" expanded="true" />
@@ -792,24 +857,26 @@
             <element signature="e#7760#7800#0#PHP" expanded="true" />
             <element signature="e#8212#8228#1#PHP" expanded="true" />
             <element signature="e#8276#8312#0#PHP" expanded="true" />
-            <element signature="e#8752#8769#1#PHP" expanded="true" />
-            <element signature="e#8828#8848#1#PHP" expanded="true" />
-            <element signature="e#8919#8939#1#PHP" expanded="true" />
-            <element signature="e#9005#9025#1#PHP" expanded="true" />
-            <element signature="e#9216#9236#1#PHP" expanded="true" />
-            <element signature="e#9309#9329#1#PHP" expanded="true" />
-            <element signature="e#10327#10365#0#PHP" expanded="true" />
-            <marker date="1519859590910" expanded="true" signature="759:850" ph="{...}" />
-            <marker date="1519859590910" expanded="true" signature="4450:4477" ph="..." />
+            <element signature="e#8830#8850#1#PHP" expanded="true" />
+            <element signature="e#8921#8941#1#PHP" expanded="true" />
+            <element signature="e#9007#9027#1#PHP" expanded="true" />
+            <element signature="e#9218#9238#1#PHP" expanded="true" />
+            <element signature="e#9311#9331#1#PHP" expanded="true" />
+            <element signature="e#9488#9504#1#PHP" expanded="true" />
+            <element signature="e#9566#9582#1#PHP" expanded="true" />
+            <marker date="1519861432936" expanded="true" signature="759:850" ph="{...}" />
+            <marker date="1519861432936" expanded="true" signature="4450:4477" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/BackOfficeBundle/Resources/views/template/chart.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="12" lean-forward="false" selection-start-line="0" selection-start-column="12" selection-end-line="0" selection-end-column="12" />
-          <folding />
+        <state relative-caret-position="465">
+          <caret line="40" column="146" lean-forward="false" selection-start-line="40" selection-start-column="146" selection-end-line="40" selection-end-column="146" />
+          <folding>
+            <element signature="e#12#31#0#Twig" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -16,4 +16,23 @@ class RDVRepository extends \Doctrine\ORM\EntityRepository
             ->setParameter('med','%'.$id.'%');
         return $qb->getResult();
     }
+    public function RdvTotalAction(){
+        $qdu = $this->getEntityManager()->createQueryBuilder();
+        $qdu->select('count(user.id)');
+        $qdu->from('UserBundle:RDV','user');
+
+        return $count =$qdu->getQuery()->getSingleScalarResult();
+    }
+
+    public function RdvValidesAction()
+    {
+        $qd = $this->getEntityManager()
+            ->createQuery("SELECT count(v.id) FROM UserBundle:RDV v WHERE v.confirme like :conf ")
+            ->setParameter('conf', 1);
+
+
+
+        return $count =$qd->getSingleScalarResult();
+
+    }
 }

@@ -253,7 +253,7 @@ class DefaultController extends Controller
     public function chartAction()
     {
         $em=$this->getDoctrine()->getManager();
-        $medecin = $em->getRepository('UserBundle:User')->findAll();
+//        $medecin = $em->getRepository('UserBundle:User')->findAll();
 
         $nbmednonvalides=$em->getRepository('UserBundle:Medecin')->medecinnonvalidesAction();
         $nbmedvalides=$em->getRepository('UserBundle:Medecin')->medecinUsersAction();
@@ -265,21 +265,25 @@ class DefaultController extends Controller
         // annonce
         $nbannoncestotal=$em->getRepository('UserBundle:Medecin')->annoncestotalsAction();
         $nbannoncesvalides=$em->getRepository('UserBundle:Medecin')->annoncesvalidesAction();
-
         $pourcentannonce=round(($nbannoncesvalides/$nbannoncestotal)*100);
+        //rdv
+        $nbrdvtotals=$em->getRepository('UserBundle:RDV')->RdvTotalAction();
+        $nbrdvvalides=$em->getRepository('UserBundle:RDV')->RdvValidesAction();
+
+        $pourcentrdv=round(($nbrdvvalides/$nbrdvtotals)*100);
 
         $pieChart = new PieChart();
 
         $pieChart->getData()->setArrayToDataTable(
             [['Task', 'Spécilité des médecins inscrits'],
-                ['Work',     11],
-                ['Eat',      2],
-                ['Commute',  2],
-                ['Watch TV', 2],
-                ['Sleep',    7]
+                ['dentiste',     11],
+                ['généraliste',      2],
+                ['ORM',  2],
+                ['dermatologue', 2],
+                ['ophtalmologue',    7]
             ]
         );
-        $pieChart->getOptions()->setTitle('My Daily Activities');
+        $pieChart->getOptions()->setTitle('Medecins par spécialité');
         $pieChart->getOptions()->setHeight(500);
         $pieChart->getOptions()->setWidth(900);
         $pieChart->getOptions()->getTitleTextStyle()->setBold(true);
@@ -291,7 +295,8 @@ class DefaultController extends Controller
 
 
         return $this->render('@BackOffice/template/chart.html.twig',array('piechart' => $pieChart,'poucent'=>$round,
-            'nbmedvalides'=>$nbmedvalides,'nbmednonvalides'=>$nbmednonvalides,'nbtotalusers'=>$nbuserstotal,'pourcentannonce'=>$pourcentannonce
+            'nbmedvalides'=>$nbmedvalides,'nbmednonvalides'=>$nbmednonvalides,'nbtotalusers'=>$nbuserstotal,'pourcentannonce'=>$pourcentannonce,
+            'poucentagerdv'=>$pourcentrdv
         ));
     }
 }

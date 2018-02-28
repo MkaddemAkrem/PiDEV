@@ -253,12 +253,21 @@ class DefaultController extends Controller
     public function chartAction()
     {
         $em=$this->getDoctrine()->getManager();
-        $medecin = $em->getRepository(User::class)->findAll();
-        foreach($medecin as $medecina) {
-            $categorie=$medecina->getSpecialite();
+        $medecin = $em->getRepository('UserBundle:User')->findAll();
 
+        $nbmednonvalides=$em->getRepository('UserBundle:Medecin')->medecinnonvalidesAction();
+        $nbmedvalides=$em->getRepository('UserBundle:Medecin')->medecinUsersAction();
+        $nbuserstotal=$em->getRepository('UserBundle:Medecin')->allusersAction();
 
-        }
+        $pourcent=($nbmedvalides/($nbmedvalides+$nbmednonvalides))*100;
+        $round=round($pourcent);
+
+        // annonce
+        $nbannoncestotal=$em->getRepository('UserBundle:Medecin')->annoncestotalsAction();
+        $nbannoncesvalides=$em->getRepository('UserBundle:Medecin')->annoncesvalidesAction();
+
+        $pourcentannonce=round(($nbannoncesvalides/$nbannoncestotal)*100);
+
         $pieChart = new PieChart();
 
         $pieChart->getData()->setArrayToDataTable(
@@ -281,6 +290,8 @@ class DefaultController extends Controller
 
 
 
-        return $this->render('@BackOffice/template/chart.html.twig',array('piechart' => $pieChart));
+        return $this->render('@BackOffice/template/chart.html.twig',array('piechart' => $pieChart,'poucent'=>$round,
+            'nbmedvalides'=>$nbmedvalides,'nbmednonvalides'=>$nbmednonvalides,'nbtotalusers'=>$nbuserstotal,'pourcentannonce'=>$pourcentannonce
+        ));
     }
 }

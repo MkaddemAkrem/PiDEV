@@ -53,5 +53,55 @@ class MedecinRepository extends \Doctrine\ORM\EntityRepository
         return $qB->getQuery();
 
     }
+    public function medecinUsersAction()
+    {
+        $qd = $this->getEntityManager()
+            ->createQuery("SELECT count(v.id) FROM UserBundle:User v WHERE v.roles like :roles ")
+            ->setParameter('roles', '%"' . 'ROLE_MEDECIN' . '"%');
+
+
+
+       return $count =$qd->getSingleScalarResult();
+
+    }
+
+        public function allusersAction()
+    {
+        $qdu = $this->getEntityManager()->createQueryBuilder();
+        $qdu->select('count(user.id)');
+        $qdu->from('UserBundle:User','user');
+
+        return $count =$qdu->getQuery()->getSingleScalarResult();
+
+    }
+    public function medecinnonvalidesAction()
+    {
+        $qdu = $this->getEntityManager()->createQueryBuilder();
+        $qdu->select('count(user.id)');
+        $qdu->from('UserBundle:Medecin','user');
+
+        return $count =$qdu->getQuery()->getSingleScalarResult();
+
+    }
+    public function annoncestotalsAction(){
+        $qdu = $this->getEntityManager()->createQueryBuilder();
+        $qdu->select('count(user.id)');
+        $qdu->from('AnnonceBundle:Annonce','user');
+
+        return $count =$qdu->getQuery()->getSingleScalarResult();
+    }
+    public function annoncesvalidesAction()
+    {
+        $qd = $this->getEntityManager()
+            ->createQuery("SELECT count(v.id) FROM AnnonceBundle:Annonce v WHERE v.confirmation like :conf ")
+            ->setParameter('conf', 1);
+
+
+
+        return $count =$qd->getSingleScalarResult();
+
+    }
+
+
 
 }

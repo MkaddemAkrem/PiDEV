@@ -4,6 +4,46 @@
     <html>
     <head></head>
     <body>
+    <div class="row">
+        <div class="col-xs-6 col-md-3">
+            <div class="panel panel-default">
+                <div class="panel-body easypiechart-panel">
+                    <h4>Médecins Inscrits: {{ nbmedvalides }} / non-inscrits {{ nbmednonvalides }}</h4>
+                    <div class="easypiechart" id="easypiechart-blue" data-percent="{{ poucent }}" >
+                        <span class="percent">{{ poucent }}% </span>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6 col-md-3">
+            <div class="panel panel-default">
+                <div class="panel-body easypiechart-panel">
+                    <h4>Annonces validés:</h4>
+                    <div class="easypiechart" id="easypiechart-orange" data-percent="{{ pourcentannonce }}" ><span class="percent">{{ pourcentannonce }} %</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6 col-md-3">
+            <div class="panel panel-default">
+                <div class="panel-body easypiechart-panel">
+                    <h4>Nombre des utlisateurs:</h4>
+                    <div class="easypiechart" id="easypiechart-teal" data-percent="100" ><span class="percent">{{ nbtotalusers }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6 col-md-3">
+            <div class="panel panel-default">
+                <div class="panel-body easypiechart-panel">
+                    <h4>Médecins inscrits:</h4>
+                    <div class="easypiechart" id="easypiechart-red" data-percent="27" ><span class="percent">27%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!--/.row-->
     <div id="div_chart"></div>
 
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>

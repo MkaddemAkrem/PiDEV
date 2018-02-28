@@ -118,7 +118,7 @@ class AnnonceController extends Controller
         $annoncesv=$em->getRepository(Annonce::class)->afficheAnnonceValides();
 
 
-        return $this->render('@BackOffice/template/widget.html.twig', array('annonce'=>$annonce,'annoncessv'=>$annoncesv));
+        return $this->render('@BackOffice/template/table.html.twig', array('annonce'=>$annonce,'annoncessv'=>$annoncesv));
 
     }
     /**

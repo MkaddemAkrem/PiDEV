@@ -39,7 +39,17 @@ bloquer_medecin:
     path:     /admin/users/block
     defaults: { _controller: UserBundle:Medecin:bloquer}
 
+annonce_back:
+    path:     /admin/users/annonce
+    defaults: { _controller: AnnonceBundle:Annonce:afficheAnnonce}
 
+valider_annonce:
+    path:     /admin/users/annonce/valider
+    defaults: { _controller: AnnonceBundle:Annonce:valider}
+
+bloquer_annonce:
+    path:     /admin/users/annonce/bloquer
+    defaults: { _controller: AnnonceBundle:Annonce:bloque}
 chart:
     path:     /admin/chart
     defaults: { _controller: FrontBundle:Default:chart }

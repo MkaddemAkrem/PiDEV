@@ -42,3 +42,7 @@ app:
 
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+annonce:
+    resource: "@AnnonceBundle/Resources/config/routing.yml"
+    prefix:   /annonce

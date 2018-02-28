@@ -1,0 +1,47 @@
+annonce_index:
+    path:     /
+    defaults: { _controller: "AnnonceBundle:Annonce:index" }
+    methods:  GET
+com_index:
+    path:     /
+    defaults: { _controller: "AnnonceBundle:Commentaire:afficheCommentaire" }
+    methods: [GET, POST]
+annonce_show:
+    path:     /{id}/show
+    defaults: { _controller: "AnnonceBundle:Annonce:show" }
+    methods:  GET
+
+annonce_new:
+    path:     /new
+    defaults: { _controller: "AnnonceBundle:Annonce:new" }
+    methods:  [GET, POST]
+
+annonce_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AnnonceBundle:Annonce:edit" }
+    methods:  [GET, POST]
+
+recherche_annonce:
+    path:     /chercher
+    defaults: { _controller: "AnnonceBundle:Annonce:chercher" }
+
+
+annonce_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AnnonceBundle:Annonce:delete" }
+    methods:  [GET, POST]
+
+ajout:
+    path:     /ajout
+    defaults: { _controller: AnnonceBundle:Commentaire:ajout }
+
+edit:
+    path:     /edit
+    defaults: { _controller: AnnonceBundle:Commentaire:edit }
+
+my_app_mail_homepage:
+    path:     /mail
+    defaults: { _controller: AnnonceBundle:Annonce:Mail }
+my_app_mail_accuse:
+    path:     /mailsuc
+    defaults: { _controller: AnnonceBundle:Annonce:success }

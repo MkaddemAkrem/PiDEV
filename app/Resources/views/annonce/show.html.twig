@@ -1,0 +1,171 @@
+{% extends"::baseaccueil.html.twig" %}
+{% block body %}
+    <div id="affichage">
+    <h1>Annonce</h1>
+
+        <article class="service type-service hentry row one-col-service">
+            <div class="entry-content">
+                Celui qui a deposé l'annonce : <h4>{{ annonce.utilisateur }}</h4>
+            </div>
+            <div class="col-lg-6 col-md-7">
+                <figure>
+                    <a>
+                        <img height="500" width="450" src="{{ asset(annonce.image) }}">
+                    </a>
+                </figure>
+            </div>
+            <div class="col-lg-6 col-md-5">
+                <div class="service-contents">
+                    <h3 class="entry-title"><a href="services-dental.html">{{ annonce.titre }}</a></h3>
+                    <div class="entry-content">
+                        <p>{{ annonce.description }}</p>
+                        {#{{annonce.creationDate|date("m/d/y")}}#}
+                        {#{{time_diff(annonce.creationDate)}}#}
+
+                    </div>
+                    {% if annonce.getUtilisateur==ys%}
+                        <a class="read-more" href="{{ path('annonce_delete', { 'id': annonce.id }) }}">supprimer</a>
+                        <a class="read-more" href="{{ path('annonce_edit', { 'id': annonce.id }) }}">modifier</a>
+                    {% endif %}
+                    <div id="res">
+
+
+
+
+
+
+
+
+            </div>
+        </article>
+
+
+
+
+
+    <div id="res">
+        <div class="titleBox">
+            <h4> <label style="
+background-color:#D0E3FA;
+border:1px solid #6495ed;
+ cellpadding:15 ;
+ cellspacing : 10">Comment Box</label></h4>
+        </div>
+        {% for i in commentaires %}
+
+
+
+                <table style="border:3px solid #6495ed;
+border-collapse:collapse;
+width:90%;
+margin:auto;">
+
+                    <tbody>
+
+                    {% if i.annonce.id== annonce.id %}
+
+
+
+
+                        <div class="actionBox">
+                            <td class="commentList">
+                            <th style="background-color:#EFF6FF">
+                                <h6>    {{ i.getUtilisateur }} a dit : </h6>
+
+                            </th>
+                            <th style="font-family: 'Comic Sans MS', cursive; background-color:#EFF6FF">
+                                <p>{{ i.commentaire }}</p>
+                            </th>
+                            <th>
+                                <p>
+                                    {#{{i.creationDatecom|date("m/d/y")}}#}
+                                    {#{{time_diff(i.CreationDatecom)}}</p>#}
+                            </th>
+                            </td>
+
+                        </div>
+
+
+
+
+
+
+
+
+                    {% endif %}
+
+                    </tbody>
+                </table>
+            </div>
+            <script src="{{ asset('js/jquery-2.2.3.min.js') }}"></script>
+            <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+            <script>
+                function savaData() {
+                    var com= $('#com').val();
+
+                    $.ajax({
+                        type: "POST",
+                        url: "{{ path('edit') }}",
+                        data: {'id':id,'com':com},
+                        success: function (data ) {
+                            console.log(data);
+                            $("#result").html(data);
+                        }
+
+                    });}
+            </script>
+
+        {% endfor %}
+
+        <li>
+            <input type="text" id="com" class="form-control" type="text" placeholder="Your comments">
+
+            <button onclick="saveData()" id="valider" value="submit" class="btn btn-default">commenter</button>
+            </br>
+
+        </li>
+
+    </div>
+
+
+
+
+
+    <li>
+            <a href="{{ path('annonce_index') }}"> retourner vers l'annonces </a>
+        </li>
+
+
+
+    </div>
+    <script src="{{ asset('js/jquery-2.2.3.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script>
+
+
+
+
+
+        function saveData() {
+
+                var com= $('#com').val();
+
+                var a={{ annonce.id }};
+                var u={{ app.user.id }}
+                $.ajax({
+                    type: "POST",
+                    url: "{{ path('ajout') }}",
+                    data: {'com': com,'u': u,'a': a},
+                    success: function (data ) {
+                        console.log(data);
+                        $('#res').html(data) ;
+                    }
+
+                });
+
+
+
+        }
+
+    </script>
+{% endblock %}

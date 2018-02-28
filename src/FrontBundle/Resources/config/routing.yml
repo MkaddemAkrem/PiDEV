@@ -18,6 +18,11 @@ medecin_rechehrche:
     path:     /doctors/recherche
     defaults: { _controller: FrontBundle:Default:rechercher }
 
+
+pdf_rdv:
+    path:     /rdv/fiche
+    defaults: { _controller: FrontBundle:Default:pdfRDV }
+
 profile_user:
     path:     /user/profile
     defaults: { _controller: FrontBundle:Default:profile }
@@ -29,7 +34,16 @@ profile_medecin:
 update_rdv:
     path:     /rdv/update
     defaults: { _controller: FrontBundle:Default:updaterdv }
+valider_rdv:
+    path:     /rdv/valider
+    defaults: { _controller: FrontBundle:Default:validerrdv }
+annuler_rdv:
+    path:     /rdv/anuuler
+    defaults: { _controller: FrontBundle:Default:annulerrdv }
 
+annuler_rdv_user:
+    path:     /rdv/anuuler
+    defaults: { _controller: FrontBundle:Default:annulerrdvuser }
 
 medecin_rechercher_spec:
     path:     /doctors/recherche/spec

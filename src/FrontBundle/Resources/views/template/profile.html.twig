@@ -40,9 +40,9 @@
                            </button>
                         </header>
 
-                        <h5>Vos Rendez-vous :</h5>
-                        <div class="entry-content" id="rdvupdate">
 
+                        <div class="entry-content" id="confirmation">
+                            <h5>Vos Rendez-vous :</h5>
                              <table class="table">
                                           <thead>
                                             <tr>
@@ -51,20 +51,34 @@
                                               <th>Heure</th>
                                               <th>modifier RDV</th>
                                               <th>Annuler RDV</th>
+                                              <th>Etat</th>
                                             </tr>
                                           </thead>
                             {% for i in rdv %}
 
                                     {% if i.utilisateur.id == app.user.id %}
-                                     <tbody>
-                                        <tr>
-                                           <th>{{ i.medecin.nom }} {{ i.medecin.prenom }}</th>
-                                          <th scope="row">{{ i.date }}</th>
-                                          <td>{{ i.heure }}</td>
-                                          <td><button data-toggle="modal" data-target="#edit"><span class="glyphicon glyphicon-pencil"></span>{{ i.id }} </button></td>
-                                           <td><button><a href="{{ path('delete_rdv_user',{'id': i.id }) }}"> <span class="glyphicon glyphicon-remove"></span></a> </button></td>
 
+                                     <tbody>
+                                        {%  if i.confirme==0 %}
+                                        <tr style="background-color: #dca7a7;opacity: 1;color: black;font-size: large;text-align: center">
+                                            <td style="color: #0c1923">{{ i.medecin.nom  }} {{ i.medecin.prenom }}</td>
+                                          <td scope="row" style="color: #0c1923">{{ i.date }}</td>
+                                          <td style="color: #0c1923">{{ i.heure }}</td>
+                                            <td style="color: #0c1923"> <span class="glyphicon glyphicon-lock"></span></td>
+                                            <td style="color: #0c1923"> <span class="glyphicon glyphicon-lock"></span></td>
+                                            <td><p style="height: 10px;"><span class="glyphicon glyphicon-time"></span>En Attente</p></td>
                                         </tr>
+                                        {% endif %}
+                                        {%  if i.confirme==1 %}
+                                            <tr style="background-color: #6dc068;opacity: 1;color: black;font-size: large;text-align: center">
+                                                <th>{{ i.medecin.nom  }} {{ i.medecin.prenom }}</th>
+                                                <th scope="row">{{ i.date }}</th>
+                                                <td>{{ i.heure }}</td>
+                                                <td><button data-toggle="modal" data-target="#edit"><span class="glyphicon glyphicon-pencil"></span>{{ i.id }} </button></td>
+                                                <td style="color: #0c1923"><button style="background-color: transparent" onclick="annuleruser('{{ i.id }}')" > <span class="glyphicon glyphicon-remove-circle"></span> </button></td>
+                                                <td><p style="height: 10px;"><span class="glyphicon glyphicon-check"></span>Validé</p></td>
+                                            </tr>
+                                        {% endif %}
 
                                         <script src="{{ asset('js/jquery-2.2.3.min.js') }}"></script>
                                         <script src="{{ asset('js/bootstrap.min.js') }}"></script>
@@ -140,6 +154,23 @@
     </div>
     <!-- Modal -->
 
+<script src="{{ asset('js/jquery-2.2.3.min.js') }}"></script>
+<script>
 
+    function annuleruser(id) {
+
+        $.ajax({
+            type: "POST",
+            url: "{{ path('annuler_rdv') }}",
+            data: {'id':id},
+            success: function (data) {
+                console.log(data);
+                $('#confirmation').html(data);
+            }
+
+        });
+
+    }
+    </script>
 {% endblock %}
 

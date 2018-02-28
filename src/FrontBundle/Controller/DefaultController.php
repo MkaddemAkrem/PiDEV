@@ -2,10 +2,12 @@
 
 namespace FrontBundle\Controller;
 
+use CMEN\GoogleChartsBundle\GoogleCharts\Charts\PieChart;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
 use UserBundle\Entity\Medecin;
@@ -157,5 +159,128 @@ class DefaultController extends Controller
             return new JsonResponse($response);
         }
         return new JsonResponse(array("status"=>true));
+    }
+
+    public function validerrdvAction(Request $request)
+    {
+        if ($request->isXmlHttpRequest() && $request->isMethod('POST')) {
+
+            $em = $this->getDoctrine()->getManager();
+
+
+            $idrdv=$request->get('id');
+
+
+            $rdv = $em->getRepository('UserBundle:RDV')->find($idrdv);
+            $rdv->setConfirme(1);
+
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($rdv);
+            $em->flush();
+            $rdvconfirmed = $em->getRepository('UserBundle:RDV')->findAll();
+            $response = $this->renderView('@BackOffice/template/ConfirmationRdv.html.twig', array('rdvall' => $rdvconfirmed));
+            return new JsonResponse($response);
+        }
+        return new JsonResponse(array("status"=>true));
+    }
+    public function annulerrdvAction(Request $request)
+    {
+        if ($request->isXmlHttpRequest() && $request->isMethod('POST')) {
+
+            $em = $this->getDoctrine()->getManager();
+
+
+            $idrdv=$request->get('id');
+
+
+            $rdv = $em->getRepository('UserBundle:RDV')->find($idrdv);
+            $rdv->setConfirme(0);
+
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($rdv);
+            $em->flush();
+            $rdvconfirmed = $em->getRepository('UserBundle:RDV')->findAll();
+            $response = $this->renderView('@BackOffice/template/ConfirmationRdv.html.twig', array('rdvall' => $rdvconfirmed));
+            return new JsonResponse($response);
+        }
+        return new JsonResponse(array("status"=>true));
+    }
+    public function annulerrdvuserAction(Request $request)
+    {
+        if ($request->isXmlHttpRequest() && $request->isMethod('POST')) {
+
+            $em = $this->getDoctrine()->getManager();
+
+
+            $idrdv=$request->get('id');
+
+
+            $rdv = $em->getRepository('UserBundle:RDV')->find($idrdv);
+            $rdv->setConfirme(0);
+
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($rdv);
+            $em->flush();
+            $rdvconfirmed = $em->getRepository('UserBundle:RDV')->findAll();
+            $response = $this->renderView('@BackOffice/template/rdvuser.html.twig', array('rdvall' => $rdvconfirmed));
+            return new JsonResponse($response);
+        }
+        return new JsonResponse(array("status"=>true));
+    }
+    function pdfRDVAction(Request $request){
+        $snapy=$this->get("knp_snappy.pdf");
+        $snapy->setOption('encoding','UTF-8');
+
+        $em = $this->getDoctrine()->getManager();
+        $id=$request->get('id');
+        $rdv = $em->getRepository('UserBundle:RDV')->find($id);
+
+
+        $html=$this->renderView('FrontBundle:template:PDF.html.twig',array('rdv'=>$rdv));
+        $filename= "rdvpdf";
+
+        return new Response(
+            $snapy->getOutputFromHtml($html),
+            200,array(
+                'Content-Type' => 'application/pdf',
+                'Content-Disposition' => 'inline; filename="'.$filename.'.pdf"'
+            )
+        );
+    }
+    public function chartAction()
+    {
+        $em=$this->getDoctrine()->getManager();
+        $medecin = $em->getRepository(User::class)->findAll();
+        foreach($medecin as $medecina) {
+            $categorie=$medecina->getSpecialite();
+
+
+        }
+        $pieChart = new PieChart();
+
+        $pieChart->getData()->setArrayToDataTable(
+            [['Task', 'Spécilité des médecins inscrits'],
+                ['Work',     11],
+                ['Eat',      2],
+                ['Commute',  2],
+                ['Watch TV', 2],
+                ['Sleep',    7]
+            ]
+        );
+        $pieChart->getOptions()->setTitle('My Daily Activities');
+        $pieChart->getOptions()->setHeight(500);
+        $pieChart->getOptions()->setWidth(900);
+        $pieChart->getOptions()->getTitleTextStyle()->setBold(true);
+        $pieChart->getOptions()->getTitleTextStyle()->setColor('#009900');
+        $pieChart->getOptions()->getTitleTextStyle()->setItalic(true);
+        $pieChart->getOptions()->getTitleTextStyle()->setFontName('Arial');
+        $pieChart->getOptions()->getTitleTextStyle()->setFontSize(20);
+
+
+
+        return $this->render('@BackOffice/template/chart.html.twig',array('piechart' => $pieChart));
     }
 }

@@ -1,0 +1,95 @@
+{% extends"::baseaccueil.html.twig" %}
+{% block body %}
+    <!--banner-->
+    <div class="banner clearfix"></div>
+        <div class=" page-top clearfix">
+            <div class="container">
+        <!--page main heading-->
+                <h1 class="entry-title">Liste des Annonces</h1>
+                <nav class="bread-crumb">
+                <ul class="breadcrumb clearfix">
+                    <li><a href="#">Annonces</a><span class="divider"></span></li>
+                    <li class="active">Liste des Annonces</li>
+                </ul>
+                    <form  method="post" class="navbar-form form-search pull-right">
+                    <input id="titre" type="text"  name="nom"></form>
+
+            </nav>
+        </div>
+    </div>
+<div id="affichage">
+    <div class="services-page clearfix">
+        <div class="container">
+            <!--column start-->
+    <div class="container" id="res">
+            {% for annonce in annonces %}
+                <article class="service type-service hentry row one-col-service">
+                    <div class="entry-content">
+                       Celui qui a deposé l'annonce : <h4>{{ annonce.utilisateur }}</h4>
+                    </div>
+                    <div class="col-lg-6 col-md-7">
+                        <figure>
+                            <a>
+                                <img height="500" width="450" src="{{ asset(annonce.image) }}">
+                            </a>
+                        </figure>
+                    </div>
+                    <div class="col-lg-6 col-md-5">
+                        <div class="service-contents">
+                            <h3 class="entry-title"><a href="services-dental.html">{{ annonce.titre }}</a></h3>
+                            <div class="entry-content">
+                                <p>{{ annonce.description }}</p>
+                                {{annonce.creationDate|date("m/d/y")}}
+                                {{time_diff(annonce.creationDate)}}
+
+                </div>
+
+{% if annonce.getUtilisateur==ys%}
+                            <a class="read-more" href="{{ path('annonce_delete', { 'id': annonce.id }) }}">supprimer</a>
+                            <a class="read-more" href="{{ path('annonce_edit', { 'id': annonce.id }) }}">modifier</a>
+{% endif %}
+
+                            <a class="read-more" href="{{ path('annonce_show', { 'id': annonce.id }) }}">commentaire</a>
+
+                        </div>
+                    </div>
+                </article>
+            {% endfor %}
+
+    </div>
+            <!--column end-->
+
+            <!--column start-->
+            <!--column end-->
+
+            <!--pagination-->
+    <div class="navigation">
+        {{ knp_pagination_render(annonces) }}
+    </div>
+    <div id="div">
+
+    </div>
+    <script src="{{ asset('js/jquery-2.2.3.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script>
+
+        $('#titre').keyup(function(){
+            var input= $("#titre").val();
+            $.ajax({
+                type: "POST",
+                url: "{{ path('recherche_annonce') }}",
+                data: {'titre': input},
+                success: function (data) {
+
+                    console.log(data);
+                    // lé lé mochkla fel view lo5ra te3 search m
+                    $("#res").html(data);
+
+
+                }
+            });
+
+        });
+
+    </script>
+{% endblock %}

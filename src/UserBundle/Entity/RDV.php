@@ -50,7 +50,17 @@ class RDV
      */
     private $medecin;
 
+    /**
+     * @ORM\Column(name="confirme", type="boolean")
+     *
+     */
+    private $confirme;
 
+    /**
+     * @ORM\Column(name="annule", type="boolean")
+     *
+     */
+    private $annule;
     /**
      * Get id
      *
@@ -160,5 +170,53 @@ class RDV
     public function getMedecin()
     {
         return $this->medecin;
+    }
+
+    /**
+     * Set confirme
+     *
+     * @param boolean $confirme
+     *
+     * @return RDV
+     */
+    public function setConfirme($confirme)
+    {
+        $this->confirme = $confirme;
+
+        return $this;
+    }
+
+    /**
+     * Get confirme
+     *
+     * @return boolean
+     */
+    public function getConfirme()
+    {
+        return $this->confirme;
+    }
+
+    /**
+     * Set annule
+     *
+     * @param boolean $annule
+     *
+     * @return RDV
+     */
+    public function setAnnule($annule)
+    {
+        $this->annule = $annule;
+
+        return $this;
+    }
+
+    /**
+     * Get annule
+     *
+     * @return boolean
+     */
+    public function getAnnule()
+    {
+        return $this->annule;
     }
 }

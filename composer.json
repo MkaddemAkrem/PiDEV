@@ -33,7 +33,11 @@
         "php-http/guzzle6-adapter": "^1.1",
         "php-http/httplug-bundle": "^1.8",
         "nomaya/social-bundle": "dev-master",
-        "knplabs/knp-paginator-bundle": "^2.7"
+        "knplabs/knp-paginator-bundle": "^2.7",
+        "knplabs/knp-snappy-bundle": "^1.5",
+        "cmen/google-charts-bundle": "^3.0",
+        "knplabs/knp-time-bundle": "^1.8"
+
 
     },
     "require-dev": {

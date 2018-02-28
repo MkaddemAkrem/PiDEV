@@ -50,7 +50,17 @@ class RDV
      */
     private $medecin;
 
+    /**
+     * @ORM\Column(name="confirme", type="boolean")
+     *
+     */
+    private $confirme;
 
+    /**
+     * @ORM\Column(name="annule", type="boolean")
+     *
+     */
+    private $annule;
     /**
      * Get id
      *
@@ -137,4 +147,28 @@ class RDV
 
 
 
+
+    /**
+     * Set medecin
+     *
+     * @param \UserBundle\Entity\User $medecin
+     *
+     * @return RDV
+     */
+    public function setMedecin(\UserBundle\Entity\User $medecin = null)
+    {
+        $this->medecin = $medecin;
+
+        return $this;
+    }
+
+    /**
+     * Get medecin
+     *
+     * @return \UserBundle\Entity\User
+     */
+    public function getMedecin()
+    {
+        return $this->medecin;
+    }
 }

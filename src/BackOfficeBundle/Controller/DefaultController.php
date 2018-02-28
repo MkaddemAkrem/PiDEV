@@ -2,7 +2,10 @@
 
 namespace BackOfficeBundle\Controller;
 
+use CMEN\GoogleChartsBundle\GoogleCharts\Charts\PieChart;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use UserBundle\Entity\Medecin;
+use UserBundle\Entity\User;
 
 class DefaultController extends Controller
 {
@@ -30,10 +33,7 @@ class DefaultController extends Controller
         return $this->render('@BackOffice/template/widget.html.twig');
     }
 
-    public function chartAction()
-    {
-        return $this->render('@BackOffice/template/chart.html.twig');
-    }
+
     public function tableAction()
     {
         return $this->render('@BackOffice/template/table.html.twig');

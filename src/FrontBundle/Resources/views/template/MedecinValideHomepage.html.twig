@@ -56,8 +56,11 @@
                             <div class="side-content clearfix">
                                 <!--doctor detail-->
                                 <header class="top-area clearfix entry-header">
-                                    <h1 class="entry-title">Dr.{{ medecinsvalides.nom }} {{ medecinsvalides.prenom }}</h1> <button type="button" class="btn btn-primary btn-lg " data-toggle="modal" data-target="#edit" style="display: inline">Prendre RDV <span class="glyphicon glyphicon-calendar"></span></button>
-                                    {{ facebookButton() }} </br>
+                                    <h1 class="entry-title">Dr.{{ medecinsvalides.nom }} {{ medecinsvalides.prenom }} <span class="glyphicon glyphicon-check" style="color: green"></span></h1>
+                                    <div id="rdv">
+                                    <button type="button" class="btn btn-primary btn-lg " data-toggle="modal" data-target="#edit" style="display: inline">Prendre RDV <span class="glyphicon glyphicon-calendar"></span></button>
+                                    </div>
+                                        {{ facebookButton() }} </br>
                                     {{ googleplusButton() }} </br>
                                     {{ twitterButton() }}
                                 </header>
@@ -135,7 +138,7 @@
                 data: {'date': date,'time': time,'u': u,'m': m},
                 success: function (data ) {
                     console.log(data);
-
+                    $('#rdv').html(data);
                 }
 
             });

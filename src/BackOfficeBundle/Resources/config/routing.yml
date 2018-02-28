@@ -38,9 +38,11 @@ delete_medecin:
 bloquer_medecin:
     path:     /admin/users/block
     defaults: { _controller: UserBundle:Medecin:bloquer}
+
+
 chart:
-    path:     /chart
-    defaults: { _controller: BackOfficeBundle:Default:chart }
+    path:     /admin/chart
+    defaults: { _controller: FrontBundle:Default:chart }
 table:
     path:     /table
     defaults: { _controller: BackOfficeBundle:Default:table }

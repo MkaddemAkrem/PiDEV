@@ -1,0 +1,38 @@
+{% for annonce in all %}
+    <article class="service type-service hentry row one-col-service">
+
+        <div class="entry-content">
+            Celui qui a deposé l'annonce : <h4>{{ annonce.getUtilisateur }}</h4>
+        </div>
+        <div class="col-lg-6 col-md-5">
+            <div class="service-contents">
+                <h3 class="entry-title"><a href="services-dental.html">{{ annonce.titre }}</a></h3>
+                <div class="col-lg-6 col-md-7">
+
+                    <figure>
+                        <a>
+                            <img src="{{ asset(annonce.image) }}">
+                        </a>
+                    </figure>
+                </div>
+                <div class="entry-content">
+                    <p>{{ annonce.description }}</p>
+                    {{annonce.creationDate|date("m/d/y")}}
+                    {{time_diff(annonce.creationDate)}}
+                </div>
+
+                {% if annonce.getutilisateur == ys%}
+                <a class="read-more" href="{{ path('annonce_delete', { 'id': annonce.id }) }}">supprimer</a>
+                <a class="read-more" href="{{ path('annonce_edit', { 'id': annonce.id }) }}">modifier</a>
+                {% endif %}
+
+
+                <a class="read-more" href="{{ path('annonce_show', { 'id': annonce.id }) }}">commentaire</a>
+
+            </div>
+        </div>
+
+    </article>
+    </div>
+
+{% endfor %}

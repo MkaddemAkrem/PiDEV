@@ -1,0 +1,50 @@
+adminProduits_index:
+    path:     /
+    defaults: { _controller: "EcommerceBundle:ProduitsAdmin:index" }
+    methods:  GET
+
+adminProduits_show:
+    path:     /produits/{id}/show
+    defaults: { _controller: "EcommerceBundle:ProduitsAdmin:show" }
+    methods:  GET
+
+adminProduits_new:
+    path:     /produits/new
+    defaults: { _controller: "EcommerceBundle:ProduitsAdmin:new" }
+    methods:  [GET, POST]
+
+adminProduits_edit:
+    path:     /produits/{id}/edit
+    defaults: { _controller: "EcommerceBundle:ProduitsAdmin:edit" }
+    methods:  [GET, POST]
+
+adminProduits_delete:
+    path:     /produits/{id}/delete
+    defaults: { _controller: "EcommerceBundle:ProduitsAdmin:delete" }
+    methods:  DELETE
+
+Admincategories_index:
+    path:     /categorie
+    defaults: { _controller: "EcommerceBundle:Categories:index" }
+    methods:  GET
+
+Admincategories_show:
+    path:     /categorie/{id}/show
+    defaults: { _controller: "EcommerceBundle:Categories:show" }
+    methods:  GET
+
+Admincategories_new:
+    path:     /categorie/new
+    defaults: { _controller: "EcommerceBundle:Categories:new" }
+    methods:  [GET, POST]
+
+Admincategories_edit:
+    path:     /categorie/{id}/edit
+    defaults: { _controller: "EcommerceBundle:Categories:edit" }
+    methods:  [GET, POST]
+
+Admincategories_delete:
+    path:     /categorie/{id}/delete
+    defaults: { _controller: "EcommerceBundle:Categories:delete" }
+    methods:  DELETE
+

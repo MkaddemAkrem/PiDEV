@@ -79,7 +79,13 @@ class User extends BaseUser
         parent::__construct();
         // your own logic
         $this->rdv=new \Doctrine\Common\Collections\ArrayCollection();
+        $this->adresses = new \Doctrine\Common\Collections\ArrayCollection();
     }
+    /**
+     * @ORM\OneToMany(targetEntity="Ecommerce\EcommerceBundle\Entity\UtilisateursAdresses",mappedBy="utilisateur", cascade={"remove"})
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $adresses;
 
     /**
      * Add rdv
@@ -339,5 +345,39 @@ class User extends BaseUser
     public function getAdresse()
     {
         return $this->adresse;
+    }
+
+    /**
+     * Add adress
+     *
+     * @param \Ecommerce\EcommerceBundle\Entity\UtilisateursAdresses $adress
+     *
+     * @return User
+     */
+    public function addAdress(\Ecommerce\EcommerceBundle\Entity\UtilisateursAdresses $adress)
+    {
+        $this->adresses[] = $adress;
+
+        return $this;
+    }
+
+    /**
+     * Remove adress
+     *
+     * @param \Ecommerce\EcommerceBundle\Entity\UtilisateursAdresses $adress
+     */
+    public function removeAdress(\Ecommerce\EcommerceBundle\Entity\UtilisateursAdresses $adress)
+    {
+        $this->adresses->removeElement($adress);
+    }
+
+    /**
+     * Get adresses
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getAdresses()
+    {
+        return $this->adresses;
     }
 }

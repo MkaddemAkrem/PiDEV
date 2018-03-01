@@ -1,0 +1,78 @@
+{% extends 'baseadmin.html.twig' %}
+
+{% block pageHeader %}
+    <div class="page-header clearfix">
+        <h1>
+            Categories list <span class="badge bg-light-blue-active"></span>
+        </h1>
+    </div>
+{% endblock %}
+
+{% block body %}
+    <div class="clearfix">
+        <div class="pull-right tableTools-container">
+            <div class="dt-buttons btn-overlap btn-group">
+                <a class="btn btn-white btn-primary btn-bold" href="{{ path('Admincategories_new') }}"><span><i class="fa fa-plus bigger-110 blue"></i> Ajouter </span></a>
+            </div>
+        </div>
+    </div>
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if categories %}
+                {% for category in categories %}
+                    <tr>
+                        <td><a href="{{ path('Admincategories_show', { 'id': category.id }) }}">{{ category.id }}</a></td>
+                        <td>{{ category.nom }}</td>
+                        <td class="text-right">
+                            <div class="hidden-sm hidden-xs btn-group">
+                                <a href="{{ path('Admincategories_show', { 'id': category.id }) }}" class="btn btn-xs btn-success">
+                                    <i class="ace-icon fa fa-eye bigger-120"></i>
+                                </a>
+                                <a href="{{ path('Admincategories_edit', { 'id': category.id }) }}" class="btn btn-xs btn-info">
+                                    <i class="ace-icon fa fa-pencil bigger-120"></i>
+                                </a>
+                            </div>
+                            
+                            <div class="hidden-md hidden-lg">
+                                <div class="inline pos-rel">
+                                    <button class="btn btn-minier btn-primary dropdown-toggle" data-toggle="dropdown" data-position="auto">
+                                        <i class="ace-icon fa fa-cog icon-only bigger-110"></i>
+                                    </button>
+                                    
+                                    <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close"> 
+                                        <li>
+                                            <a href="{{ path('Admincategories_show', { 'id': category.id }) }}" class="tooltip-success" data-rel="tooltip" title="Edit">
+                                                <span class="green">
+                                                    <i class="ace-icon fa fa-eye bigger-120"></i>
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ path('Admincategories_edit', { 'id': category.id }) }}" class="tooltip-success" data-rel="tooltip" title="Edit">
+                                                <span class="green">
+                                                    <i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
+                                                </span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+            {% else %}
+                <tr><td colspan="4" class="text-center" style="padding:10px"><b>Aucun enregistrement trouvé</b></td></tr>
+            {% endif %} 
+        </tbody>
+    </table>
+    
+    
+    
+{% endblock %}

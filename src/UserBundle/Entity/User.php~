@@ -79,7 +79,13 @@ class User extends BaseUser
         parent::__construct();
         // your own logic
         $this->rdv=new \Doctrine\Common\Collections\ArrayCollection();
+        $this->adresses = new \Doctrine\Common\Collections\ArrayCollection();
     }
+    /**
+     * @ORM\OneToMany(targetEntity="Ecommerce\EcommerceBundle\Entity\UtilisateursAdresses",mappedBy="utilisateur", cascade={"remove"})
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $adresses;
 
     /**
      * Add rdv

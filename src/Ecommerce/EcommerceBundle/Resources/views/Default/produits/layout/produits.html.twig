@@ -1,0 +1,38 @@
+{% extends "baseaccueil.html.twig" %}
+{% block body %}
+    <div class="page-top clearfix">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-9 col-md-8 col-sm-7">
+{#                    <nav class="bread-crumb">
+                        <ul class="breadcrumb clearfix">
+                            <li><a href="#">Medical Press</a><span class="divider"></span></li>
+                            <li><a href="#" title="View all posts in Health Basics">Health Basics</a><span class="divider"></span></li>
+                            <li><li class="active">Image Post Format</li>
+                        </ul>
+                    </nav>#}
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-5">
+                    <div id="search" class="widget clearfix">
+                        {{ render(controller('EcommerceBundle:produits:searchAjax')) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="blog-page">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9 col-md-8 col-sm-12 animated fadeInLeft ae-animation-fadeInLeft">
+                <div id="productList" class="span9">
+                    {{ include('@Ecommerce/Default/produits/layout/produits-list.html.twig') }}
+                </div>
+                
+                <nav class="woocommerce-pagination clearfix">
+                        {{ knp_pagination_render(produits) }}
+                </nav>
+            </div>
+            {% include 'moduleUsed/navigation.html.twig' %}
+        </div></div>
+    </div>
+    {% endblock %}

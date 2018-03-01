@@ -53,3 +53,7 @@ evenement:
 medicament:
     resource: "@MedicamentBundle/Resources/config/routing.yml"
     prefix:   /medicament
+
+ecommerce:
+    resource: "@EcommerceBundle/Resources/config/routing.yml"
+    prefix:   /shop

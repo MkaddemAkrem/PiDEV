@@ -31,6 +31,7 @@ class AppKernel extends Kernel
             new EvenementBundle\EvenementBundle(),
             new blackknight467\StarRatingBundle\StarRatingBundle(),
             new MedicamentBundle\MedicamentBundle(),
+            new Ecommerce\EcommerceBundle\EcommerceBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

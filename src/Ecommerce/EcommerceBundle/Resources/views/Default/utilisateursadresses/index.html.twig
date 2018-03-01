@@ -1,0 +1,56 @@
+{% extends 'baseaccueil.html.twig' %}
+
+{% block body %}
+    <div class="page-top clearfix">
+        <!--page main heading-->
+        <div class="container">
+            <h1 class="entry-title">Liste de mes adresses</h1>
+        </div>
+    </div>
+    <div class="clearfix animated fadeInLeft ae-animation-fadeInLeft">
+        <div class="col-lg-12 col-md-12 col-sm-12 ">
+            <table  class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Nom</th>
+                        <th>Prenom</th>
+                        <th>Telephone</th>
+                        <th>Adresse</th>
+                        <th>Cp</th>
+                        <th>Pays</th>
+                        <th>Ville</th>
+                        <th>Complement</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for utilisateursAdresses in utilisateursAdresses %}
+                        <tr>
+                            <td><a href="{{ path('utilisateursadresses_show', { 'id': utilisateursAdresses.id }) }}">{{ utilisateursAdresses.id }}</a></td>
+                            <td>{{ utilisateursAdresses.nom }}</td>
+                            <td>{{ utilisateursAdresses.prenom }}</td>
+                            <td>{{ utilisateursAdresses.telephone }}</td>
+                            <td>{{ utilisateursAdresses.adresse }}</td>
+                            <td>{{ utilisateursAdresses.cp }}</td>
+                            <td>{{ utilisateursAdresses.pays }}</td>
+                            <td>{{ utilisateursAdresses.ville }}</td>
+                            <td>{{ utilisateursAdresses.complement }}</td>
+                            <td>
+                                <ul>
+                                    <li>
+                                        <a href="{{ path('utilisateursadresses_show', { 'id': utilisateursAdresses.id }) }}">Voir</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ path('utilisateursadresses_edit', { 'id': utilisateursAdresses.id }) }}">Editer</a>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <a href="{{ path('utilisateursadresses_new') }}" class="button alt">Ajouter une adresse</a>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,65 @@
+{% extends "baseaccueil.html.twig" %}
+{% block title %}{{  produit.nom }}{% endblock %}
+{% block description %}{ produit.description }}{% endblock %}
+{% block content_header %}
+    <div class="page-top clearfix animated fadeInRight ae-animation-fadeInRight">
+        <!--page main heading-->
+        <div class="container">
+            <h1 class="entry-title">{{  produit.nom }}</h1>
+        </div>
+    </div>
+{% endblock %}
+    
+{% block body %}
+    
+    <div class="container">
+        <div class="blog-page-single space-top clearfix">
+            <div itemscope itemtype="http://schema.org/Product" class="post-338 product type-product status-publish has-post-thumbnail product_cat-posters sale shipping-taxable purchasable product-type-simple product-cat-posters instock">
+                <div class="images animated fadeInLeft ae-animation-fadeInLeft">
+                    <a href="{{ produit.image.path }}" itemprop="image" class="woocommerce-main-image zoom" title="{{ produit.nom }}" data-rel="prettyPhoto[product-gallery]">
+                        <img src="{{ produit.image.path }}" alt="{{ produit.nom }}"></a>
+                </div>
+                <div class="summary entry-summary entry-content animated fadeInRight ae-animation-fadeInRight">
+                    <h1 itemprop="name" class="product_title entry-title">{{ produit.nom }}</h1>
+                    <div class="woocommerce-product-rating" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
+                        <div class="star-rating" title="Rated 4 out of 5">
+                            <span style="width:80%">
+                                <strong itemprop="ratingValue" class="rating">4</strong> / <span itemprop="bestRating">5</span>
+                            </span>
+                        </div>
+                        <a href="#reviews" class="woocommerce-review-link" rel="nofollow">(<span itemprop="reviewCount" class="count">4</span> Avis de clients)</a>	</div>                 
+                    <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">            
+                        <p class="price"> <ins><span class="amount">{{ produit.prix }} DT</span></ins></p>            
+                        <meta itemprop="price" content="{{ produit.prix }} DT" />
+                        <meta itemprop="priceCurrency" content="DT" />
+                        <link itemprop="availability" href="http://schema.org/InStock" />                
+                    </div>
+                    <div itemprop="description">
+                        <p>{{ produit.description }}</p>
+                    </div>   
+                    {% if panier[produit.id] is not defined %}
+                        <form class="cart" method="get" action ="{{ path('ajouter',{'id' : produit.id}) }}" >           
+                            <div class="quantity">
+                                <select name="qte" class="input-text qty text">
+                                    {% for i in 1..10 %}
+                                        <option value="{{ i }}">{{ i }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>            
+                            <input type="hidden" name="add-to-cart" value="{{ produit.prix }}" />                        
+                            <button type="submit" class="single_add_to_cart_button button alt">Ajouter au panier</button> 
+                        </form>     
+                    {% else %}
+                        <div style="margin-bottom: 10px">
+                            <a href="{{ path('panier')  }}" class="single_add_to_cart_button button alt">Le produit a deja été ajouté</a>
+                        </div>
+                    {% endif %}
+                    <div class="product_meta">        
+                        <span class="posted_in">Categorie(s): <a href="#" rel="tag">{{produit.categorie.nom}}</a></span>             
+                    </div>
+                </div><!-- .summary -->
+                <meta itemprop="url" content="#" />
+            </div><!-- #product-338 -->
+        </div><!-- /.blog-page-single -->
+    </div>
+{% endblock %}

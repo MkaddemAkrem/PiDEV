@@ -1,0 +1,17 @@
+{% if produits|length != 0 %}
+    <ul class="products">
+        {% for produit in produits %}
+            <li class="product type-product status-publish has-post-thumbnail product_cat-clothing product_cat-t-shirts shipping-taxable purchasable product-type-simple product-cat-clothing product-cat-t-shirts instock">
+                <a href="{{ path('presentation', { 'id' : produit.id }) }}">
+                    <div class="img-container"><img src="{{ produit.image.path }}" alt="{{ produit.nom }}"></div>
+                    <h3 class="product-name">{{ produit.nom }}</h3>
+                    <div class="star-rating" title="Rated 4 out of 5"><span style="width:80%"><strong class="rating">4</strong> out of 5</span></div>
+                    <span class="price"><ins><span class="amount">{{ produit.prix }} DT</span></ins></span>
+                    <a rel="nofollow" href="{{ path('ajouter',{ 'id' : produit.id }) }}" data-quantity="1" data-product_id="338" data-product_sku="" class="button product_type_simple add_to_cart_button ajax_add_to_cart">Ajouter au panier</a>
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    Aucun produit ne correspond a votre recherche
+{% endif %}

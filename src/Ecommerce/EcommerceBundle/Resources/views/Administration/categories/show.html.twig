@@ -1,0 +1,66 @@
+{% extends 'baseadmin.html.twig' %}
+
+{% block pageHeader %}
+    <div class="page-header clearfix">
+        <h1>
+            {{ category.nom }}
+        </h1>
+    </div>
+{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="widget-box" id="widget-box-4">
+                <div class="widget-header widget-header-flat">
+                    <h4 class="widget-title"> {{ "Informations" | trans }}</h4>
+                    
+                    <div class="widget-toolbar">
+                        <a href="{{ path('Admincategories_edit', { 'id': category.id }) }}" class="btn btn-xs btn-primary" style="padding: 2px 10px;">
+                            <i class="ace-icon fa fa-pencil"></i> Modifier
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="widget-body">
+                    <div class="widget-main">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="profile-user-info">
+                                    <div class="profile-info-row">
+                                        <div class="profile-info-name align-left"> {{ "Id" | trans }} </div>
+                                        <div class="profile-info-value">
+                                            <span>{{ category.id }}</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="profile-info-row">
+                                        <div class="profile-info-name align-left"> {{ "Nom" | trans }} </div>
+                                        
+                                        <div class="profile-info-value">
+                                            <span>{{ category.nom }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>     
+    <div class="clearfix form-actions">
+        <div class="col-md-offset-3 col-md-9">
+            <a href="{{ path('Admincategories_index') }}" class="btn" type="reset">
+                <i class="ace-icon fa fa-arrow-left bigger-110"></i>
+                Retour à la liste
+            </a>
+            &nbsp; &nbsp; &nbsp;
+            <div style="display:inline-block">
+                {{ form_start(delete_form) }}
+                <input type="submit" value="Supprimer" class="btn btn-danger">
+                {{ form_end(delete_form) }}
+            </div>
+        </div>
+    </div> 
+{% endblock %}

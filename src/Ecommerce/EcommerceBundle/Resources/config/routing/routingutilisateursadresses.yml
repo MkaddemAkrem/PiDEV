@@ -1,0 +1,24 @@
+utilisateursadresses_index:
+    path:     /
+    defaults: { _controller: "EcommerceBundle:UtilisateursAdresses:index" }
+    methods:  GET
+
+utilisateursadresses_show:
+    path:     /{id}/show
+    defaults: { _controller: "EcommerceBundle:UtilisateursAdresses:show" }
+    methods:  GET
+
+utilisateursadresses_new:
+    path:     /new
+    defaults: { _controller: "EcommerceBundle:UtilisateursAdresses:new" }
+    methods:  [GET, POST]
+
+utilisateursadresses_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "EcommerceBundle:UtilisateursAdresses:edit" }
+    methods:  [GET, POST]
+
+utilisateursadresses_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "EcommerceBundle:UtilisateursAdresses:delete" }
+    methods:  DELETE

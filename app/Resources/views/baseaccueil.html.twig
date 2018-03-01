@@ -42,6 +42,7 @@
     <link rel="stylesheet" href="{{ asset('css/datepicker3.css') }}" type="text/css" media="all">
     <link rel="stylesheet" href="{{ asset('css/clockpicker.css') }}" type="text/css" media="all">
     <link rel="stylesheet" href="{{ asset('css/standalone.css') }}" type="text/css" media="all">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}" type="text/css" media="all">
 
 
     <!--[if lt IE 9]>
@@ -188,12 +189,13 @@
                 </li>
 
                 <li>
-                    <a href="#">E-commerce</a>
+                    <a href="{{ path('produits') }}">E-commerce</a>
                     <ul>
-                        <li><a href="product-detail.html">Product Detail</a></li>                         <li><a href="cart.html">Cart</a></li>
-                        <li><a href="checkout.html">Checkout</a></li>
+                        <li><a href="{{ path('panier') }}">Panier</a></li>
+                        <li><a href="{{ path('validation') }}">Validation</a></li>
                     </ul>
                 </li>
+                {{ render(controller("EcommerceBundle:panier:menu")) }}
 
 
 

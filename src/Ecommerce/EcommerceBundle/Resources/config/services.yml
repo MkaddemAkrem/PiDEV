@@ -1,12 +1,6 @@
 services:
-      RedirectionListener:
-          class: Ecommerce\EcommerceBundle\Listener\RedirectionListener
-          arguments: ['@service_container','@session','@security.token_storage']
-          tags:
-            - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
-
-      app.twig_extension:
-              class: Ecommerce\EcommerceBundle\Twig\Extension\TvaExtension
-              public: false
-              tags:
-                  - { name: twig.extension }
+    app.twig_extension:
+        class: Ecommerce\EcommerceBundle\Twig\Extension\TvaExtension
+        public: false
+        tags:
+            - { name: twig.extension }

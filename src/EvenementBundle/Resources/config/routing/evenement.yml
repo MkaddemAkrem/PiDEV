@@ -1,0 +1,35 @@
+evenement_index:
+    path:     /
+    defaults: { _controller: "EvenementBundle:Evenement:index" }
+    methods:  GET
+
+evenement_show:
+    path:     /{id}/show
+    defaults: { _controller: "EvenementBundle:Evenement:show" }
+    methods:  [GET, POST]
+
+evenement_new:
+    path:     /new
+    defaults: { _controller: "EvenementBundle:Evenement:new" }
+
+
+evenement_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "EvenementBundle:Evenement:edit" }
+    methods:  [GET, POST]
+
+evenement_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "EvenementBundle:Evenement:delete" }
+    methods:  [GET, POST]
+recherche_annonce:
+    path:     /chercher
+    defaults: { _controller: "EvenementBundle:Evenement:chercher" }
+evenement_indexmembre:
+    path:     /
+    defaults: { _controller: "EvenementBundle:Evenement:index" }
+    methods:  GET
+
+pdf:
+    path:     /pdf
+    defaults: { _controller: "EvenementBundle:Evenement:pdf" }

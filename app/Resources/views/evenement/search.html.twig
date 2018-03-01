@@ -1,0 +1,31 @@
+
+   {% for item in all %}
+       <article class="service type-service hentry row one-col-service">
+           <div class="col-lg-6 col-md-7">
+               <figure>
+                   <a>
+                       <img src="{{ asset(item.image) }}">
+                   </a>
+               </figure>
+           </div>
+           <div class="col-lg-6 col-md-5">
+               <div class="service-contents">
+                   <h3 class="entry-title"><a href="{{ path('evenement_show', { 'id': item.id }) }}">{{ item.titre }}</a></h3>
+                   <div class="entry-content">
+                       <p>{{ item.description | raw }}</p>
+                       <p>{{ item.localite }}</p>
+
+
+                   </div>
+       {% if item.utilisateur is not null %}
+           {{item.utilisateur.id}}
+           {% if app.user.id == item.utilisateur.id %}
+                   <a class="read-more" href="{{ path('evenement_delete', { 'id': item.id }) }}">supprimer</a>
+                   <a class="read-more" href="{{ path('evenement_edit', { 'id': item.id }) }}">modifier</a>
+           {% endif %}
+       {% endif %}
+               </div>
+           </div>
+       </article>
+       </div>
+   {% endfor %}

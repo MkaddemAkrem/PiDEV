@@ -1,0 +1,117 @@
+{% set path_interet = exist_interet != true ? path('delete_interest' , {'id' : evenement.id}) : path('ajouter_interest' , {'id' : evenement.id}) %}
+{% set state_interet = exist_interet != true ? 'Interested' : 'Marquer intéressé' %}
+
+{% set path_going = exist_going != true ? path('delete_going' , {'id' : evenement.id}) : path('ajouter_going' , {'id' : evenement.id}) %}
+{% set state_going = exist_going != true ? 'Going' : 'Marquer Going' %}
+
+{% extends 'baseaccueil.html.twig' %}
+
+{% block body %}
+    <head> <link rel="stylesheet" type="text/css" href="{{ asset('bundles/starrating/css/rating.css') }}" />
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+        <script src="{{ asset('bundles/starrating/js/rating.js') }}"></script>
+
+
+    </head>
+
+    <h1>Evenement</h1>
+
+    <article class="service type-service hentry row one-col-service">
+        <div class="col-lg-6 col-md-7">
+            <figure>
+                <a>
+                    <img src="{{ asset(evenement.image) }}">
+                </a>
+            </figure>
+        </div>
+        {{ twitterButton() }}
+        <div class="col-lg-6 col-md-5">
+            <div class="service-contents">
+                <h3 class="entry-title">{{ evenement.titre }}</a></h3>
+                <div class="entry-content">
+                    <p>{{ evenement.description | raw }}</p>
+                    <p>{{ evenement.localite }}</p>
+                    {{ form_start(form) }}
+                    <div class="controls">
+                        <h5>Donnez une note</h5>
+                        {{ form_widget(form.rating) }}   </div>
+                    {{ form_end(form) }}
+
+                    <p>Nombre de personnes intéressées: {{ (evenement.nbrInterested ) }}</p>
+                    <p>Nombre de personnes going: {{ (evenement.nbrGoing ) }}</p>
+                    <p>{% if evenement.date %}{{ evenement.date|date('Y-m-d') }}{% endif %}</p>
+
+
+                </div>
+
+
+
+                {% if evenement.utilisateur is not null %}
+                {{evenement.utilisateur.id}}
+                {% if app.user.id == evenement.utilisateur.id %}
+                <a class="read-more" href="{{ path('evenement_delete', { 'id': evenement.id }) }}">supprimer</a>
+                <a class="read-more" href="{{ path('evenement_edit', { 'id': evenement.id }) }}">modifier</a>
+                {% endif %}
+                {% endif %}
+                <a class="read-more" href="{{ path('pdf') }}">Generer invitation</a>
+                <a class="read-more" href="{{ path_going }}" class="default_btn" id="js-going">{{ state_going }}</a>
+                <a class="read-more" href="{{ path_interet }}" class="default_btn" id="js-interested">{{ state_interet }}</a>
+
+            </div>
+            <style type="text/css">html, body,#map-canvas {height: 100%;margin: 0;padding: 0;}</style>
+            <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+            <div id="home">
+                <div id="main_area">
+                    <!-- Slider -->
+                    <div class="row">
+                        <div class="col-sm-6" id="slider-thumbs">
+                            <div>
+                                <input type="text" value="{{ latitude }}" hidden>
+                                <input type="text" value="{{ longitude }}" hidden>
+                                <div id="map-canvas" style="width: 500px; height: 400px"></div>
+                                <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBElAXPP9DI-B9FADZRNrX3htrpAAHAdUI"
+                                        type="text/javascript"></script>
+                                <script>
+                                    var myCenter =new google.maps.LatLng({{ latitude }},{{ longitude }});
+                                    var marker;
+                                    function initialize() {
+                                        var mapProp= {
+                                            center: myCenter,
+                                            zoom: 5,
+                                            mapTypeId: google.maps.MapTypeId.ROADMAP
+                                        };
+                                        /*  var mapOptions = {
+                                              center: {lat: -34.397, lng: 150.644},
+                                              zoom: 8
+                                          };*/
+                                        var map = new google.maps.Map(document.getElementById('map-canvas'),
+                                            mapProp);
+                                        var marker = new google.maps.Marker({
+                                            position: myCenter,
+                                            animation: google.maps.Animation.BOUNCE
+                                        });
+                                        marker.setMap(map);
+                                        /* var myLating = new google.maps.LatLng(-25.363882, 131.044922);
+                                          var mapOptions = {
+                                              zoom: 4,
+                                              center: myLating
+                                          }
+                                         var map = new google.maps.Map(document.getElementById("map-canvas"),mapOptions);
+                                 */
+                                    }
+                                    google.maps.event.addDomListner(window,'load',initialize());
+                                </script>
+
+                            </div>
+
+
+
+                        </div>
+        </div>
+    </article>
+
+
+
+
+{% endblock %}

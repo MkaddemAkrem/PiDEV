@@ -1,0 +1,29 @@
+{% for medicament in all %}
+
+    <article class="service type-service hentry row one-col-service">
+        <div class="col-lg-6 col-md-7">
+            <figure>
+                <a>
+                    <img src="{{ asset('images/pills_medicine_healthcare-512 (1).png') }}">
+                </a>
+            </figure>
+        </div>
+        <div class="col-lg-6 col-md-5">
+            <div class="service-contents">
+                <h3 class="entry-title"><a href={{ path('medicament_show', { 'id': medicament.id }) }}>{{ medicament.nom }}</a></h3>
+                <div class="entry-content">
+                    <p>{{ medicament.type }}</p>
+                    <p>{{ medicament.notice }}</p>
+                    <p>{{ medicament.prix }}</p>
+                </div>
+    {% if medicament.utilisateur is not null %}
+        {{medicament.utilisateur.id}}
+        {% if app.user.id == medicament.utilisateur.id %}
+                <a class="read-more" href="{{ path('medicament_delete', { 'id': medicament.id }) }}">supprimer</a>
+                <a class="read-more" href="{{ path('medicament_edit', { 'id': medicament.id }) }}">modifier</a>
+        {% endif %}
+    {% endif %}
+            </div>
+        </div>
+    </article>
+{% endfor %}

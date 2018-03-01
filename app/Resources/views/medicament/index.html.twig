@@ -1,0 +1,132 @@
+{% extends"::baseaccueil.html.twig" %}
+{% block body %}
+
+
+    <!--banner-->
+    <div class="banner clearfix"></div>
+    <div class=" page-top clearfix">
+        <div class="container">
+            <!--page main heading-->
+            <h1 class="entry-title">Liste des Medicament</h1>
+            <nav class="bread-crumb">
+                <ul class="breadcrumb clearfix">
+                    <li><a href="#">Medicaments</a><span class="divider"></span></li>
+                    <li class="active">Liste des Medicaments</li> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    {% if is_granted('ROLE_MEDECIN') %}
+                    <button  data-title="Edit" data-toggle="modal" data-target="#edit " class="read-more">ajouter</button>
+                    {% endif %}
+
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                    <h4 class="modal-title custom_align" id="Heading">Ajouter un medicament</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        {#{{ form_start(edit_form) }}#}
+                        <input class="form-control " type="text" placeholder="nom" id="nom" name="nom">
+                        {#{{form_widget(edit_form.nom ,{ 'attr': {'class': "form-control",'placeholder': "Nom"}})}}#}
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control " type="text" placeholder="type" id="type" name="type">
+                        {#{{form_widget(edit_form.prenom ,{ 'attr': {'class': "form-control",'placeholder': "Prenom"}})}}#}
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control " type="text" placeholder="notice" id="notice" name="notice">
+                        {#{{form_widget(edit_form.prenom ,{ 'attr': {'class': "form-control",'placeholder': "Prenom"}})}}#}
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="prix" id="prix" name="prix">
+                        {#{{form_widget(edit_form.specialite ,{ 'attr': {'class': "form-control",'placeholder': "adresse"}})}}#}
+                    </div>
+
+                    {#<div class="form-group">#}
+
+                    {#{{form_widget(form.adresse ,{ 'attr': {'class': "form-control",'placeholder': "adresse"}})}}#}
+                    {#</div>#}
+                </div>
+                <div class="modal-footer ">
+                    <input value="AJOUTER" type="submit" onclick="saveData()" class="btn btn-warning btn-lg glyphicon glyphicon-ok-sign" style="width: 100%" >  
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+
+<div class="services-page clearfix">
+    <div class="container" id="result">
+            <!--column start-->
+            {% for medicament in medicaments %}
+
+                <article class="service type-service hentry row one-col-service">
+                    <div class="col-lg-6 col-md-7">
+                        <figure>
+                            <a>
+                                <img src="{{ asset('images/pills_medicine_healthcare-512 (1).png') }}">
+                            </a>
+                        </figure>
+                    </div>
+                    <div class="col-lg-6 col-md-5">
+                        <div class="service-contents">
+                            <h3 class="entry-title"><a href={{ path('medicament_show', { 'id': medicament.id }) }}>{{ medicament.nom }}</a></h3>
+                            <div class="entry-content">
+                                <p>{{ medicament.type }}</p>
+                                <p>{{ medicament.notice }}</p>
+                                <p>{{ medicament.prix }}</p>
+                            </div>
+                            {% if medicament.utilisateur is not null %}
+                            {{medicament.utilisateur.id}}
+                            {% if app.user.id == medicament.utilisateur.id %}
+                            <a class="read-more" href="{{ path('medicament_delete', { 'id': medicament.id }) }}">supprimer</a>
+                            <a class="read-more" href="{{ path('medicament_edit', { 'id': medicament.id }) }}">modifier</a>
+                            {% endif %}
+                            {% endif %}
+
+                        </div>
+                    </div>
+                </article>
+            {% endfor %}
+            <!--column end-->
+
+            <!--column start-->
+            <!--column end-->
+
+            <!--pagination-->
+        <div class="navigation text-center">
+            {{ knp_pagination_render(medicaments) }}
+        </div>
+
+        </div>
+    </div>
+ <script src="{{ asset('js/jquery-2.2.3.min.js') }}"></script>
+ <script>
+     function saveData() {
+
+         var nom= $('#nom').val();
+         var type= $('#type').val();
+         var notice= $('#notice').val();
+         var prix= $('#prix').val();
+
+         $.ajax({
+             type: "POST",
+             url: "{{ path('medicament_new') }}",
+             data: {'nom': nom,'type': type,'notice': notice,'prix': prix},
+             success: function (data ) {
+                 console.log(data);
+                 $("#result").html(data);
+
+             }
+
+         });
+
+     }
+
+ </script>
+{% endblock %}

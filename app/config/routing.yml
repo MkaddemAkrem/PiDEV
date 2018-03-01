@@ -46,3 +46,10 @@ fos_user:
 annonce:
     resource: "@AnnonceBundle/Resources/config/routing.yml"
     prefix:   /annonce
+
+evenement:
+    resource: "@EvenementBundle/Resources/config/routing.yml"
+    prefix:   /evenement
+medicament:
+    resource: "@MedicamentBundle/Resources/config/routing.yml"
+    prefix:   /medicament

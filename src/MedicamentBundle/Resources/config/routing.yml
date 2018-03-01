@@ -1,0 +1,7 @@
+medicament_medicament:
+    resource: "@MedicamentBundle/Resources/config/routing/medicament.yml"
+    prefix:   /
+
+medicament_homepage:
+    path:     /
+    defaults: { _controller: MedicamentBundle:Default:index }

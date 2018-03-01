@@ -1,0 +1,28 @@
+evenement_evenement:
+    resource: "@EvenementBundle/Resources/config/routing/evenement.yml"
+    prefix:   /
+
+#evenement_homepage:
+#    path:     /event
+#    defaults: { _controller: EvenementBundle:Default:event }
+#listeevent:
+#    path:     /listeevent
+#    defaults: { _controller: EvenementBundle:Default:listeevent }
+#listeeventmembre:
+#        path:     /listeeventmembre
+#        defaults: { _controller: EvenementBundle:Default:listeeventmembre }
+
+ajouter_going:
+    path:     /AjouterGoing/{id}
+    defaults: { _controller: EvenementBundle:GoingEvents:addGoingAjax }
+
+delete_going:
+      path:     /RetirerGoing/{id}
+      defaults: { _controller: EvenementBundle:GoingEvents:deleteGoingAjax}
+ajouter_interest:
+    path:     /AjouterInterest/{id}
+    defaults: { _controller: EvenementBundle:Interested:addInterestedAjax}
+
+delete_interest:
+      path:     /RetirerInerest/{id}
+      defaults: { _controller: EvenementBundle:Interested:deleteInterestAjax}

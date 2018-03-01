@@ -1,0 +1,118 @@
+{% extends"::baseaccueil.html.twig" %}
+{% block body %}
+    <head> <link rel="stylesheet" type="text/css" href="{{ asset('bundles/starrating/css/rating.css') }}" />
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+        <script src="{{ asset('bundles/starrating/js/rating.js') }}"></script>
+
+
+    </head>
+
+    <h1>rechercher</h1>
+
+    <form>
+
+        <input id="titre" type="text"  name="titre" placeholder="titre">
+
+    </form>
+    <!--banner-->
+    <div class="banner clearfix"></div>
+    <div class=" page-top clearfix">
+        <div class="container">
+            <!--page main heading-->
+            <h1 class="entry-title">Liste des événements</h1>
+            <nav class="bread-crumb">
+                <ul class="breadcrumb clearfix">
+                    <li><a href="#">Evenements</a><span class="divider"></span></li>
+                    <li class="active">Liste des événements</li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    {% if is_granted('ROLE_MEDECIN') %}
+                    <a class="read-more" href="{{ path('evenement_new') }}">ajouter</a>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <div id="affichage">
+    <div class="services-page clearfix">
+        <div class="container" id="res">
+            <!--column start-->
+
+            {% for evenement in evenements %}
+                <article class="service type-service hentry row one-col-service">
+                    <div class="col-lg-6 col-md-7">
+
+                        <figure>
+                            <a>
+                                <img src="{{ asset(evenement.image) }}">
+                            </a>
+                        </figure>
+                    </div>
+
+                    <div class="col-lg-6 col-md-5">
+                        <div class="service-contents">
+                            <h3 class="entry-title"><a href="{{ path('evenement_show', { 'id': evenement.id }) }}">{{ evenement.titre }}</a></h3>
+                            <div class="entry-content">
+
+                                <p>{{ evenement.localite }}</p>
+
+                                <p>{{ evenement.description | raw }}</p>
+                                <p>{% if evenement.date %}{{ evenement.date|date('Y-m-d') }}{% endif %}</p>
+
+
+                            </div>
+                            {% if evenement.utilisateur is not null %}
+                            {{evenement.utilisateur.id}}
+                            {% if app.user.id == evenement.utilisateur.id %}
+                            <a class="read-more" href="{{ path('evenement_delete', { 'id': evenement.id }) }}">supprimer</a>
+                            <a class="read-more" href="{{ path('evenement_edit', { 'id': evenement.id }) }}">modifier</a>
+                            {% endif %}
+                            {% endif %}
+                {% for rate in rating %}
+                                                    {% if evenement.id == rate.evenement %}
+                                                        {{ rate.1|rating(5, "fa-1x")  }}
+                                                    {% endif %}
+                {% endfor %}
+                        </div>
+
+                    </div>
+                </article>
+
+            {% endfor %}
+        </div>
+            <!--column end-->
+
+            <!--column start-->
+            <!--column end-->
+
+            <!--pagination-->
+        <div class="navigation text-center">
+            {{ knp_pagination_render(evenements) }}
+        </div>
+
+        </div>
+    <div id="div">
+    </div>
+    <script src="{{ asset('js/jquery-2.2.3.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script>
+
+        $('#titre').keyup(function(){
+            var input= $("#titre").val();
+            $.ajax({
+                type: "POST",
+                url: "{{ path('recherche_annonce') }}",
+                data: {'titre': input},
+                success: function (data) {
+
+                    console.log(data);
+                    // lé lé mochkla fel view lo5ra te3 search m
+                    $("#res").html(data);
+
+
+                }
+            });
+
+        });
+
+    </script>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'baseaccueil.html.twig' %}
+
+{% block body %}
+    <h1>Modifier evenement</h1>
+
+    {{ form_start(edit_form) }}
+    {{ form_widget(edit_form) }}
+    <input type="submit" value="Modifier" />            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     <a href="{{ path('medicament_index') }}">revenir a la page d'accueil</a>
+    {{ form_end(edit_form) }}
+
+    <ul>
+
+
+    </ul>
+{% endblock %}

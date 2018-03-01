@@ -1,0 +1,10 @@
+<h1>votre id</h1>{{ app.user.id }}
+
+<h1>votre username</h1>{{ app.user.username }}
+
+{% for evenement in evenement %}
+    <h1>titre de l'evenement</h1> {{ evenement.titre }}
+    <h1>lieux de l'evenement</h1> {{ evenement.localite }}
+    <h1>description de l'evenement</h1> {{ evenement.description | raw }}
+
+{% endfor %}

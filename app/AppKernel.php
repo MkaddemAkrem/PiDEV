@@ -28,6 +28,9 @@ class AppKernel extends Kernel
             new CMEN\GoogleChartsBundle\CMENGoogleChartsBundle(),
             new AnnonceBundle\AnnonceBundle(),
             new Knp\Bundle\TimeBundle\KnpTimeBundle(),
+            new EvenementBundle\EvenementBundle(),
+            new blackknight467\StarRatingBundle\StarRatingBundle(),
+            new MedicamentBundle\MedicamentBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
